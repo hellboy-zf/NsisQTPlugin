@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resource/image/logo.ico</file>
+        <file>Resource/image/btn_normal.png</file>
+        <file>Resource/image/btn_pressed.png</file>
+        <file>Resource/image/btn_grey.png</file>
+        <file>Resource/image/sysBtnMin_normal.png</file>
+        <file>Resource/image/sysBtnMin_hover.png</file>
+        <file>Resource/image/sysBtnMin_pressed.png</file>
+        <file>Resource/image/sysBtnClose_normal.png</file>
+        <file>Resource/image/sysBtnClose_hover.png</file>
+        <file>Resource/image/sysBtnClose_pressed.png</file>
+        <file>Resource/image/btn_down.png</file>
+        <file>Resource/image/btn_down_hover.png</file>
+        <file>Resource/image/radio_uncheck.png</file>
+        <file>Resource/image/radio_check.png</file>
+        <file>Resource/image/radio_disabled.png</file>		
+		<file>Resource/icon/ico_wnd.png</file>
+        <file>Resource/icon/ico_remind.png</file>
+        <file>Resource/icon/ico_warn.png</file>
+		<file>Resource/icon/ico_question.png</file>
+        <file>Resource/icon/ico_error.png</file>
+        <file>Resource/License/License_chs.txt</file>
+        <file>Resource/License/License_cht.txt</file>
+        <file>Resource/License/License_en.txt</file>
+        <file>translations/en_US.qm</file>
+        <file>translations/zh_CN.qm</file>
+        <file>translations/zh_TW.qm</file>
+    </qresource>
+</RCC>

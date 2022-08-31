@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QTInstallPageClass</class>
+ <widget class="QMainWindow" name="QTInstallPageClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QTSetupPlugin</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	font-family: Microsoft YaHei;
+}
+
+QWidget{
+	background-color: rgb(54, 54, 54);
+}
+
+QGroupBox {
+	color: #A3A3A3;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(80, 80, 80);
+	margin-top: 3ex;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	left: 10px;
+	margin-left: 2px;
+	padding: 0 0px;
+}
+
+QPushButton {
+    border: 1px solid #ff7e00;
+    border-radius: 2px;
+	background:transparent;
+	color:#ff7e00;
+	outline:none;
+	font-size:14px;
+}
+QPushButton::focus {
+    background-color: #ff7e00;
+	color:#ffffff;
+}
+QPushButton::hover {
+    background-color: #ff7e00;
+	color:#ffffff;
+}
+QPushButton:pressed {
+    background-color: #ff7e00;
+	color:#ffffff;
+}
+QPushButton:!enabled{
+	border: 1px solid #999999;
+	color:#999999;
+}
+
+QLabel{
+	color:#ffffff;
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;
+}
+
+QTextEdit
+{
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;
+	background:transparent;
+	border: 1px solid #707070;
+	color: #999999;
+}
+
+QCheckBox
+{
+	color:#ffffff;
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;	
+}
+
+QRadioButton {
+	color: #ffffff;
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;
+}
+
+QRadioButton::indicator:unchecked {
+	image: url(:/Resource/image/radio_uncheck.png);
+}
+QRadioButton::indicator:disabled{
+	image: url(:/Resource/image/radio_disabled.png);
+}
+QRadioButton:disabled{
+	color:#5D5D5D;
+}
+QRadioButton::indicator:checked {
+	image: url(:/Resource/image/radio_check.png);
+}
+
+QMenu {
+    border-radius:5px; 
+    font-size:15px;
+    background-color:#3B3B3B; 
+    color:rgb(255,255,255);
+ }
+QMenu::separator {
+	height: 1px;
+	background: #585858;
+	margin:0 22px
+}
+QMenu::indicator:exclusive:checked {
+	image: none;
+}
+QMenu::item:checked{
+	color:#EF8200;
+}
+QMenu::item {
+	height:35px; 
+	width:85px; 
+	background-color:#3B3B3B; 
+	padding:0 15px;
+}
+QMenu::item:selected {
+	background-color:rgb(237,125,49);
+	color:rgb(255,255,255);
+	padding:0 15px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="minimumSize">
+    <size>
+     <width>560</width>
+     <height>400</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="boxTitle" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(x1:0,y1:0,x2:1,y2:1,stop:0 #343434, stop:1 #1e1e1e);</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblLogo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>36</horstretch>
+           <verstretch>36</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>36</width>
+           <height>36</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resource/image/logo.ico);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblTitle">
+         <property name="styleSheet">
+          <string notr="true">font-size:16px;</string>
+         </property>
+         <property name="text">
+          <string>NSIS App 1.0.0.1  Install</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>318</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnLang">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>32</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	color:#ffffff;
+	border:none;
+	background:transparent;
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:16px;
+}
+QPushButton:focus
+{
+	color:#ff7e00;
+}
+QPushButton:hover
+{
+	color:#ff7e00;
+}
+QPushButton:menu-indicator
+{
+	image:url(:/Resource/image/btn_down.png);
+	subcontrol-position: right center;	
+}
+QPushButton:menu-indicator:focus
+{
+image:url(:/Resource/image/btn_down_hover.png);
+}
+QPushButton:menu-indicator:hover
+{
+image:url(:/Resource/image/btn_down_hover.png);
+}</string>
+         </property>
+         <property name="text">
+          <string>En</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnMin">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>26</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	border:none;
+	border-image: url(:/Resource/image/sysBtnMin_normal.png);
+}
+QPushButton:focus{border-image: url(:/Resource/image/sysBtnMin_hover.png);}
+QPushButton:hover{border-image: url(:/Resource/image/sysBtnMin_hover.png);}
+QPushButton:pressed{border-image: url(:/Resource/image/sysBtnMin_pressed.png);}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnClose">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>26</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	border:none;
+	border-image: url(:/Resource/image/sysBtnClose_normal.png);
+}
+QPushButton:focus{border-image: url(:/Resource/image/sysBtnClose_hover.png);}
+QPushButton:hover{border-image: url(:/Resource/image/sysBtnClose_hover.png);}
+QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="shortcut">
+          <string>Esc</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+      <zorder>lblTitle</zorder>
+      <zorder>btnMin</zorder>
+      <zorder>btnClose</zorder>
+      <zorder>lblLogo</zorder>
+      <zorder>btnLang</zorder>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::pane
+{
+	border: -1px;
+	top:-2px;
+	left: 1px;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>4</number>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="tab_1">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+       <widget class="QLabel" name="welcome_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>70</y>
+          <width>441</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:18px;
+forn-bold:true;
+</string>
+        </property>
+        <property name="text">
+         <string>Welcome to App 1.0.0.1 Setup</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="welcome_lbl_context">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>120</y>
+          <width>401</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Setup will guide you through the installation of App.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;It is recommendedd that you close all other applications before starting Setup.This will make it possible to update relevant system files without having to reboot your computer.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Click Next to continue.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="welcome_btn_next">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="tabletTracking">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Next</string>
+        </property>
+        <property name="shortcut">
+         <string>N</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="welcome_btn_cancel">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+        <property name="shortcut">
+         <string>C</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+       <widget class="QLabel" name="license_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>220</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:18px;
+forn-bold:true;</string>
+        </property>
+        <property name="text">
+         <string>License Agreement</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="license_textEdit">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>521</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="license_lbl_explain">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>190</y>
+          <width>521</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you accept the terms of the agreement,select the first option below. You must accept the agreenment to install Links.Click Next to continue.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="license_btn_cancel">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+        <property name="shortcut">
+         <string>C</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="license_btn_next">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Next</string>
+        </property>
+        <property name="shortcut">
+         <string>N</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="license_btn_back">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+        <property name="shortcut">
+         <string>P</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="license_radio_disagree">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>275</y>
+          <width>411</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>I do not accept the terms of the License Agreement</string>
+        </property>
+        <property name="shortcut">
+         <string>D</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="license_radio_agree">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>248</y>
+          <width>381</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>I accept the terms of the License Agreement</string>
+        </property>
+        <property name="shortcut">
+         <string>A</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Tab 3</string>
+       </attribute>
+       <widget class="QLabel" name="directory_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:18px;
+forn-bold:true;</string>
+        </property>
+        <property name="text">
+         <string>Choose Install Location</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="directory_lbl_explain">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>521</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Setup will install LinksExplorer in the following folder.To install in a different folder,click Browse and select another folder.Click Install to start the installation.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="directory_edit_dir">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>128</y>
+          <width>321</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:#212121;
+color:#ffffff</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="directory_btn_dir_select">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>128</y>
+          <width>90</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+QPushButton {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #444444, stop: 0.78 #444444,
+                                stop: 0.78 #1b1b1b, stop: 1.0 #1b1b1b);
+	
+	border:1px solid #707070;
+	border-left-color: #212121;
+	color:#ffffff;	
+	border-radius: none;
+	outline:none;
+	font-size:14px;
+}
+QPushButton::focus {
+    background-color: #ff7e00;
+}
+QPushButton::hover {
+    background-color: #ff7e00;
+}
+QPushButton:pressed {
+    background-color: #ff7e00;
+}
+QPushButton:!enabled{
+	color:#999999;
+}</string>
+        </property>
+        <property name="text">
+         <string>Browse...</string>
+        </property>
+        <property name="shortcut">
+         <string>B</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="directory_lbl_mem_required">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>164</y>
+          <width>211</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #999999;</string>
+        </property>
+        <property name="text">
+         <string>Space required: 999.9MB</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="directory_lbl_mem_available">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>186</y>
+          <width>211</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #999999;</string>
+        </property>
+        <property name="text">
+         <string>Space required: 999.9MB</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="directory_btn_cancel">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+        <property name="shortcut">
+         <string>C</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="directory_btn_install">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Install</string>
+        </property>
+        <property name="shortcut">
+         <string>I</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="directory_btn_back">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+        <property name="shortcut">
+         <string>P</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="directory_lbl_directory">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>132</y>
+          <width>108</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Destination Folder</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Tab 4</string>
+       </attribute>
+       <widget class="QLabel" name="instfiles_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>310</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:18px;
+forn-bold:true;</string>
+        </property>
+        <property name="text">
+         <string>Installing</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="instfiles_lbl_explain">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>551</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Please wait while Links is being installed.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="instfiles_progress_bar">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>80</y>
+          <width>521</width>
+          <height>8</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(163, 163, 163);
+font-family: &quot;Microsoft YaHei&quot;;
+font-size:12px;</string>
+        </property>
+        <property name="value">
+         <number>24</number>
+        </property>
+        <property name="textVisible">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="instfiles_list_widget">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>521</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(163, 163, 163);
+font-family: &quot;Microsoft YaHei&quot;;
+font-size:12px;</string>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="instfiles_btn_cancel">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+        <property name="shortcut">
+         <string>C</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="instfiles_btn_next">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Next</string>
+        </property>
+        <property name="shortcut">
+         <string>N</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Tab 5</string>
+       </attribute>
+       <widget class="QPushButton" name="finish_btn_finish">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Finish</string>
+        </property>
+        <property name="shortcut">
+         <string>F</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="finish_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>421</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:18px;
+forn-bold:true;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Completing Links Setup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="finish_lbl_explain">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>511</width>
+          <height>63</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Links has been installed on your computer.&lt;/p&gt;
+&lt;p style=&quot; margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Click Finish to close Setup。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="finish_box1">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>130</y>
+          <width>241</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Client</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <widget class="QCheckBox" name="finish_ck_run1">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>40</y>
+           <width>181</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Run LinksExplorer</string>
+         </property>
+         <property name="shortcut">
+          <string>R</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="finish_ck_desktop_shorcuts1">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>70</y>
+           <width>181</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Desktop Shorcuts</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="finish_ck_boot1">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>100</y>
+           <width>181</width>
+           <height>18</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Boot</string>
+         </property>
+         <property name="shortcut">
+          <string>B</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="finish_box2">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>130</y>
+          <width>251</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Service</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <widget class="QCheckBox" name="finish_ck_run2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>40</y>
+           <width>181</width>
+           <height>18</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Run Services_Mgr</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+R</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="finish_ck_desktop_shorcuts2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>70</y>
+           <width>181</width>
+           <height>18</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Desktop Shorcuts</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+S</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="finish_ck_boot2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>100</y>
+           <width>181</width>
+           <height>18</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Boot</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+B</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>btnClose</tabstop>
+  <tabstop>btnMin</tabstop>
+  <tabstop>btnLang</tabstop>
+  <tabstop>welcome_btn_next</tabstop>
+  <tabstop>welcome_btn_cancel</tabstop>
+  <tabstop>license_textEdit</tabstop>
+  <tabstop>license_radio_agree</tabstop>
+  <tabstop>license_radio_disagree</tabstop>
+  <tabstop>license_btn_back</tabstop>
+  <tabstop>license_btn_next</tabstop>
+  <tabstop>license_btn_cancel</tabstop>
+  <tabstop>directory_edit_dir</tabstop>
+  <tabstop>directory_btn_dir_select</tabstop>
+  <tabstop>directory_btn_back</tabstop>
+  <tabstop>directory_btn_install</tabstop>
+  <tabstop>directory_btn_cancel</tabstop>
+  <tabstop>instfiles_list_widget</tabstop>
+  <tabstop>instfiles_btn_next</tabstop>
+  <tabstop>instfiles_btn_cancel</tabstop>
+  <tabstop>finish_ck_run1</tabstop>
+  <tabstop>finish_ck_desktop_shorcuts1</tabstop>
+  <tabstop>finish_ck_boot1</tabstop>
+  <tabstop>finish_ck_run2</tabstop>
+  <tabstop>finish_ck_desktop_shorcuts2</tabstop>
+  <tabstop>finish_ck_boot2</tabstop>
+  <tabstop>finish_btn_finish</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../QTSetupPlugin.qrc"/>
+ </resources>
+ <connections/>
+</ui>

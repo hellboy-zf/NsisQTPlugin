@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QTUninstallPageClass</class>
+ <widget class="QMainWindow" name="QTUninstallPageClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>560</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QTSetupPlugin</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	font-family: Microsoft YaHei;
+}
+
+QWidget{
+	background-color: rgb(54, 54, 54);
+}
+
+QGroupBox {
+	color: #A3A3A3;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(80, 80, 80);
+	margin-top: 3ex;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	left: 10px;
+	margin-left: 2px;
+	padding: 0 0px;
+}
+
+QPushButton {
+    border: 1px solid #ff7e00;
+    border-radius: 2px;
+	background:transparent;
+	color:#ff7e00;
+	outline:none;
+	font-size:14px;
+}
+QPushButton::focus {
+    background-color: #ff7e00;
+	color:#ffffff;
+}
+QPushButton::hover {
+    background-color: #ff7e00;
+	color:#ffffff;
+}
+QPushButton:pressed {
+    background-color: #ff7e00;
+	color:#ffffff;
+}
+QPushButton:!enabled{
+	border: 1px solid #999999;
+	color:#999999;
+}
+
+QLabel{
+	color:#ffffff;
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;
+}
+
+QTextEdit
+{
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;
+	background:transparent;
+	border: 1px solid #707070;
+	color: #999999;
+}
+
+QCheckBox
+{
+	color:#ffffff;
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;	
+}
+
+QRadioButton {
+	color: #ffffff;
+	font-family: &quot;Microsoft YaHei&quot;;
+	font-size:12px;
+}
+
+QRadioButton::indicator:unchecked {
+	image: url(:/Resource/image/radio_uncheck.png);
+}
+QRadioButton::indicator:disabled{
+	image: url(:/Resource/image/radio_disabled.png);
+}
+QRadioButton:disabled{
+	color:#5D5D5D;
+}
+QRadioButton::indicator:checked {
+	image: url(:/Resource/image/radio_check.png);
+}
+
+QMenu {
+    border-radius:5px; 
+    font-size:15px;
+    background-color:#3B3B3B; 
+    color:rgb(255,255,255);
+ }
+QMenu::separator {
+	height: 1px;
+	background: #585858;
+	margin:0 22px
+}
+QMenu::indicator:exclusive:checked {
+	image: none;
+}
+QMenu::item:checked{
+	color:#EF8200;
+}
+QMenu::item {
+	height:35px; 
+	width:85px; 
+	background-color:#3B3B3B; 
+	padding:0 15px;
+}
+QMenu::item:selected {
+	background-color:rgb(237,125,49);
+	color:rgb(255,255,255);
+	padding:0 15px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="minimumSize">
+    <size>
+     <width>560</width>
+     <height>400</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="boxTitle" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(x1:0,y1:0,x2:1,y2:1,stop:0 #343434, stop:1 #1e1e1e);</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblLogo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>36</horstretch>
+           <verstretch>36</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>36</width>
+           <height>36</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/Resource/image/logo.ico);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblTitle">
+         <property name="styleSheet">
+          <string notr="true">font-size:16px;</string>
+         </property>
+         <property name="text">
+          <string>NSIS App 1.0.0.1 Uninstall</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>318</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnMin">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>26</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>26</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	border:none;
+	border-image: url(:/Resource/image/sysBtnMin_normal.png);
+}
+QPushButton:hover{border-image: url(:/Resource/image/sysBtnMin_hover.png);}
+QPushButton:pressed{border-image: url(:/Resource/image/sysBtnMin_pressed.png);}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnClose">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>26</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>26</width>
+           <height>26</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	border:none;
+	border-image: url(:/Resource/image/sysBtnClose_normal.png);
+}
+QPushButton:hover{border-image: url(:/Resource/image/sysBtnClose_hover.png);}
+QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="shortcut">
+          <string>Esc</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+      <zorder>lblTitle</zorder>
+      <zorder>btnMin</zorder>
+      <zorder>btnClose</zorder>
+      <zorder>lblLogo</zorder>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget{
+	border-color: rgb(29, 29, 29);
+	border-size: 1px;
+}
+QTabWidget::pane
+{
+	border: -1px;
+	top:-2px;
+	left: 1px;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="tab_1">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+       <widget class="QPushButton" name="welcome_btn_uninstall">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>210</y>
+          <width>120</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Uninstall</string>
+        </property>
+        <property name="shortcut">
+         <string>U</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="welcome_btn_cancel">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>210</y>
+          <width>120</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+        <property name="shortcut">
+         <string>C</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="welcome_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>120</y>
+          <width>391</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;
+forn-bold:true;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Are you sure you want to remove App 1.0.0.1 completely?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+       <widget class="QLabel" name="deletefiles_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>310</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;
+forn-bold:true;</string>
+        </property>
+        <property name="text">
+         <string>Uninstalling</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="deletefiles_lbl_explain">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>46</y>
+          <width>541</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please wait while App 1.0.0.1 is being uninstalled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QProgressBar" name="deletefiles_progress_bar">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>74</y>
+          <width>521</width>
+          <height>8</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(163, 163, 163);
+font-family: &quot;Microsoft YaHei&quot;;
+font-size:12px;</string>
+        </property>
+        <property name="value">
+         <number>24</number>
+        </property>
+        <property name="textVisible">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="deletefiles_list_widget">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>100</y>
+          <width>521</width>
+          <height>171</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(163, 163, 163);
+font-family: &quot;Microsoft YaHei&quot;;
+font-size:12px;</string>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deletefiles_btn_cancel">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+        <property name="shortcut">
+         <string>C</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="deletefiles_btn_next">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>310</y>
+          <width>90</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Next</string>
+        </property>
+        <property name="shortcut">
+         <string>Enter</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Tab 3</string>
+       </attribute>
+       <widget class="QPushButton" name="finish_btn_finish">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>210</y>
+          <width>260</width>
+          <height>36</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Finish</string>
+        </property>
+        <property name="shortcut">
+         <string>F</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="finish_lbl_title">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>400</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;
+forn-bold:true;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Completing App 1.0.0.1 Uninstall&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="finish_lbl_explain">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>541</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;App 1.0.0.1 has been uninstalled on your computer.&lt;/p&gt;&lt;p&gt;Click Finish to close Uninstall.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>btnMin</tabstop>
+  <tabstop>btnClose</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>welcome_btn_cancel</tabstop>
+  <tabstop>welcome_btn_uninstall</tabstop>
+  <tabstop>deletefiles_list_widget</tabstop>
+  <tabstop>deletefiles_btn_next</tabstop>
+  <tabstop>deletefiles_btn_cancel</tabstop>
+  <tabstop>finish_btn_finish</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../QTSetupPlugin.qrc"/>
+ </resources>
+ <connections/>
+</ui>
