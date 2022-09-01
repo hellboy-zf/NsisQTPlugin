@@ -1,4 +1,4 @@
-#include "CMessageBox.h"
+﻿#include "CMessageBox.h"
 #include <windows.h>
 #include <QLabel>
 #include <QVBoxLayout>

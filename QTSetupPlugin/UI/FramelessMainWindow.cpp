@@ -1,4 +1,4 @@
-#include "FramelessMainWindow.h"
+ï»¿#include "FramelessMainWindow.h"
 #include <QMouseEvent>
 #include <QApplication>
 #include <QDebug>
@@ -177,39 +177,39 @@ void FramelessMainWindow::region(const QPoint &cursorGlobalPoint) {
     int y = cursorGlobalPoint.y();
 
     if (tl.x() + m_iResizeRegionPadding >= x && tl.x() <= x && tl.y() + m_iResizeRegionPadding >= y && tl.y() <= y) {
-        // ×óÉÏ½Ç
+        // å·¦ä¸Šè§’
         m_Direction = Direction::LEFTTOP;
         this->setCursor(QCursor(Qt::SizeFDiagCursor));
     } else if (x >= rb.x() - m_iResizeRegionPadding && x <= rb.x() && y >= rb.y() - m_iResizeRegionPadding && y <= rb.y()) {
-        // ÓÒÏÂ½Ç
+        // å³ä¸‹è§’
         m_Direction = Direction::RIGHTBOTTOM;
         this->setCursor(QCursor(Qt::SizeFDiagCursor));
     } else if (x <= tl.x() + m_iResizeRegionPadding && x >= tl.x() && y >= rb.y() - m_iResizeRegionPadding && y <= rb.y()) {
-        //×óÏÂ½Ç
+        //å·¦ä¸‹è§’
         m_Direction = Direction::LEFTBOTTOM;
         this->setCursor(QCursor(Qt::SizeBDiagCursor));
     } else if (x <= rb.x() && x >= rb.x() - m_iResizeRegionPadding && y >= tl.y() && y <= tl.y() + m_iResizeRegionPadding) {
-        // ÓÒÉÏ½Ç
+        // å³ä¸Šè§’
         m_Direction = Direction::RIGHTTOP;
         this->setCursor(QCursor(Qt::SizeBDiagCursor));
     } else if (x <= tl.x() + m_iResizeRegionPadding && x >= tl.x()) {
-        // ×ó±ß
+        // å·¦è¾¹
         m_Direction = Direction::LEFT;
         this->setCursor(QCursor(Qt::SizeHorCursor));
     } else if (x <= rb.x() && x >= rb.x() - m_iResizeRegionPadding) {
-        // ÓÒ±ß
+        // å³è¾¹
         m_Direction = Direction::RIGHT;
         this->setCursor(QCursor(Qt::SizeHorCursor));
     } else if (y >= tl.y() && y <= tl.y() + m_iResizeRegionPadding) {
-        // ÉÏ±ß
+        // ä¸Šè¾¹
         m_Direction = Direction::UP;
         this->setCursor(QCursor(Qt::SizeVerCursor));
     } else if (y <= rb.y() && y >= rb.y() - m_iResizeRegionPadding) {
-        // ÏÂ±ß
+        // ä¸‹è¾¹
         m_Direction = Direction::DOWN;
         this->setCursor(QCursor(Qt::SizeVerCursor));
     } else {
-        // Ä¬ÈÏ
+        // é»˜è®¤
         m_Direction = Direction::NONE;
         this->setCursor(QCursor(Qt::ArrowCursor));
     }
