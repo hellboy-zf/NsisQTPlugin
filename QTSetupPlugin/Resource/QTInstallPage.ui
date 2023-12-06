@@ -13,132 +13,21 @@
   <property name="windowTitle">
    <string>QTSetupPlugin</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">* {
-	font-family: Microsoft YaHei;
-}
-
-QWidget{
-	background-color: rgb(54, 54, 54);
-}
-
-QGroupBox {
-	color: #A3A3A3;
-	border-width: 1px;
-	border-style: solid;
-	border-color: rgb(80, 80, 80);
-	margin-top: 3ex;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	subcontrol-position: top left;
-	left: 10px;
-	margin-left: 2px;
-	padding: 0 0px;
-}
-
-QPushButton {
-    border: 1px solid #ff7e00;
-    border-radius: 2px;
-	background:transparent;
-	color:#ff7e00;
-	outline:none;
-	font-size:14px;
-}
-QPushButton::focus {
-    background-color: #ff7e00;
-	color:#ffffff;
-}
-QPushButton::hover {
-    background-color: #ff7e00;
-	color:#ffffff;
-}
-QPushButton:pressed {
-    background-color: #ff7e00;
-	color:#ffffff;
-}
-QPushButton:!enabled{
-	border: 1px solid #999999;
-	color:#999999;
-}
-
-QLabel{
-	color:#ffffff;
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;
-}
-
-QTextEdit
-{
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;
-	background:transparent;
-	border: 1px solid #707070;
-	color: #999999;
-}
-
-QCheckBox
-{
-	color:#ffffff;
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;	
-}
-
-QRadioButton {
-	color: #ffffff;
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;
-}
-
-QRadioButton::indicator:unchecked {
-	image: url(:/Resource/image/radio_uncheck.png);
-}
-QRadioButton::indicator:disabled{
-	image: url(:/Resource/image/radio_disabled.png);
-}
-QRadioButton:disabled{
-	color:#5D5D5D;
-}
-QRadioButton::indicator:checked {
-	image: url(:/Resource/image/radio_check.png);
-}
-
-QMenu {
-    border-radius:5px; 
-    font-size:15px;
-    background-color:#3B3B3B; 
-    color:rgb(255,255,255);
- }
-QMenu::separator {
-	height: 1px;
-	background: #585858;
-	margin:0 22px
-}
-QMenu::indicator:exclusive:checked {
-	image: none;
-}
-QMenu::item:checked{
-	color:#EF8200;
-}
-QMenu::item {
-	height:35px; 
-	width:85px; 
-	background-color:#3B3B3B; 
-	padding:0 15px;
-}
-QMenu::item:selected {
-	background-color:rgb(237,125,49);
-	color:rgb(255,255,255);
-	padding:0 15px;
-}</string>
-  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
     <size>
      <width>560</width>
      <height>400</height>
     </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>560</width>
+     <height>400</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
@@ -158,21 +47,27 @@ QMenu::item:selected {
     </property>
     <item>
      <widget class="QWidget" name="boxTitle" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>46</height>
+       </size>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(x1:0,y1:0,x2:1,y2:1,stop:0 #343434, stop:1 #1e1e1e);</string>
+       <string notr="true"/>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="spacing">
         <number>8</number>
        </property>
        <property name="leftMargin">
-        <number>2</number>
+        <number>14</number>
        </property>
        <property name="topMargin">
         <number>2</number>
        </property>
        <property name="rightMargin">
-        <number>2</number>
+        <number>14</number>
        </property>
        <property name="bottomMargin">
         <number>2</number>
@@ -187,8 +82,8 @@ QMenu::item:selected {
          </property>
          <property name="minimumSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -202,7 +97,7 @@ QMenu::item:selected {
        <item>
         <widget class="QLabel" name="lblTitle">
          <property name="styleSheet">
-          <string notr="true">font-size:16px;</string>
+          <string notr="true">font-size:12px;</string>
          </property>
          <property name="text">
           <string>NSIS App 1.0.0.1  Install</string>
@@ -229,20 +124,20 @@ QMenu::item:selected {
         <widget class="QPushButton" name="btnLang">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
+           <horstretch>30</horstretch>
+           <verstretch>18</verstretch>
           </sizepolicy>
          </property>
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>26</height>
+           <width>30</width>
+           <height>18</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>32</width>
-           <height>26</height>
+           <width>30</width>
+           <height>18</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -251,7 +146,7 @@ QMenu::item:selected {
 	border:none;
 	background:transparent;
 	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:16px;
+	font-size:12px;
 }
 QPushButton:focus
 {
@@ -287,25 +182,26 @@ image:url(:/Resource/image/btn_down_hover.png);
          </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
+           <horstretch>18</horstretch>
+           <verstretch>18</verstretch>
           </sizepolicy>
          </property>
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>26</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{
 	border:none;
+	background:transparent;
 	border-image: url(:/Resource/image/sysBtnMin_normal.png);
 }
 QPushButton:focus{border-image: url(:/Resource/image/sysBtnMin_hover.png);}
@@ -321,30 +217,32 @@ QPushButton:pressed{border-image: url(:/Resource/image/sysBtnMin_pressed.png);}<
         <widget class="QPushButton" name="btnClose">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
+           <horstretch>18</horstretch>
+           <verstretch>18</verstretch>
           </sizepolicy>
          </property>
          <property name="minimumSize">
           <size>
-           <width>0</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>26</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{
 	border:none;
+	background:transparent;
 	border-image: url(:/Resource/image/sysBtnClose_normal.png);
 }
 QPushButton:focus{border-image: url(:/Resource/image/sysBtnClose_hover.png);}
 QPushButton:hover{border-image: url(:/Resource/image/sysBtnClose_hover.png);}
-QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);}</string>
+QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);}
+QPushButton:disabled{border-image: url(:/Resource/image/sysBtnClose_disable.png);}</string>
          </property>
          <property name="text">
           <string/>
@@ -376,7 +274,7 @@ QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);
 }</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <property name="tabBarAutoHide">
        <bool>false</bool>
@@ -389,7 +287,7 @@ QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>70</y>
+          <y>60</y>
           <width>441</width>
           <height>31</height>
          </rect>
@@ -434,7 +332,7 @@ forn-bold:true;
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>120</y>
+          <y>110</y>
           <width>401</width>
           <height>141</height>
          </rect>
@@ -452,13 +350,7 @@ forn-bold:true;
          </size>
         </property>
         <property name="text">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Setup will guide you through the installation of App.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;It is recommendedd that you close all other applications before starting Setup.This will make it possible to update relevant system files without having to reboot your computer.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Click Next to continue.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Microsoft YaHei'; font-size:9pt;&quot;&gt;Setup will guide you through the installation of App.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Microsoft YaHei'; font-size:9pt;&quot;&gt;It is recommendedd that you close all other applications before starting Setup.This will make it possible to update relevant system files without having to reboot your computer.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Microsoft YaHei'; font-size:9pt;&quot;&gt;Click Next to continue.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="textFormat">
          <enum>Qt::RichText</enum>
@@ -510,6 +402,12 @@ p, li { white-space: pre-wrap; }
        </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
@@ -559,6 +457,9 @@ forn-bold:true;</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -566,15 +467,15 @@ forn-bold:true;</string>
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Microsoft YaHei'; font-size:12px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
        <widget class="QLabel" name="license_lbl_explain">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>190</y>
+          <y>194</y>
           <width>521</width>
           <height>41</height>
          </rect>
@@ -588,7 +489,6 @@ p, li { white-space: pre-wrap; }
         <property name="font">
          <font>
           <family>Microsoft YaHei</family>
-          <pointsize>-1</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
@@ -597,11 +497,7 @@ p, li { white-space: pre-wrap; }
          <enum>Qt::LeftToRight</enum>
         </property>
         <property name="text">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;If you accept the terms of the agreement,select the first option below. You must accept the agreenment to install Links.Click Next to continue.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Microsoft YaHei'; font-size:9pt;&quot;&gt;If you accept the terms of the agreement,select the first option below. You must accept the agreenment to install Links.Click Next to continue.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="textFormat">
          <enum>Qt::RichText</enum>
@@ -704,6 +600,11 @@ p, li { white-space: pre-wrap; }
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei</family>
+         </font>
+        </property>
         <property name="text">
          <string>I accept the terms of the License Agreement</string>
         </property>
@@ -751,11 +652,7 @@ forn-bold:true;</string>
          </rect>
         </property>
         <property name="text">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Setup will install LinksExplorer in the following folder.To install in a different folder,click Browse and select another folder.Click Install to start the installation.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Microsoft YaHei'; font-size:9pt;&quot;&gt;Setup will install LinksExplorer in the following folder.To install in a different folder,click Browse and select another folder.Click Install to start the installation.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="textFormat">
          <enum>Qt::RichText</enum>
@@ -772,50 +669,19 @@ p, li { white-space: pre-wrap; }
          <rect>
           <x>130</x>
           <y>128</y>
-          <width>321</width>
+          <width>331</width>
           <height>30</height>
          </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:#212121;
-color:#ffffff</string>
         </property>
        </widget>
        <widget class="QPushButton" name="directory_btn_dir_select">
         <property name="geometry">
          <rect>
-          <x>450</x>
+          <x>460</x>
           <y>128</y>
-          <width>90</width>
+          <width>80</width>
           <height>30</height>
          </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
-QPushButton {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #444444, stop: 0.78 #444444,
-                                stop: 0.78 #1b1b1b, stop: 1.0 #1b1b1b);
-	
-	border:1px solid #707070;
-	border-left-color: #212121;
-	color:#ffffff;	
-	border-radius: none;
-	outline:none;
-	font-size:14px;
-}
-QPushButton::focus {
-    background-color: #ff7e00;
-}
-QPushButton::hover {
-    background-color: #ff7e00;
-}
-QPushButton:pressed {
-    background-color: #ff7e00;
-}
-QPushButton:!enabled{
-	color:#999999;
-}</string>
         </property>
         <property name="text">
          <string>Browse...</string>
@@ -836,13 +702,9 @@ QPushButton:!enabled{
         <property name="font">
          <font>
           <family>Microsoft YaHei</family>
-          <pointsize>-1</pointsize>
           <weight>50</weight>
           <bold>false</bold>
          </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #999999;</string>
         </property>
         <property name="text">
          <string>Space required: 999.9MB</string>
@@ -856,9 +718,6 @@ QPushButton:!enabled{
           <width>211</width>
           <height>22</height>
          </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: #999999;</string>
         </property>
         <property name="text">
          <string>Space required: 999.9MB</string>
@@ -934,7 +793,7 @@ QPushButton:!enabled{
          <string>Destination Folder</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </widget>
@@ -977,14 +836,10 @@ forn-bold:true;</string>
          </rect>
         </property>
         <property name="text">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Please wait while Links is being installed.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Please wait while Links is being installed.</string>
         </property>
         <property name="textFormat">
-         <enum>Qt::RichText</enum>
+         <enum>Qt::AutoText</enum>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -999,13 +854,8 @@ p, li { white-space: pre-wrap; }
           <x>20</x>
           <y>80</y>
           <width>521</width>
-          <height>8</height>
+          <height>4</height>
          </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(163, 163, 163);
-font-family: &quot;Microsoft YaHei&quot;;
-font-size:12px;</string>
         </property>
         <property name="value">
          <number>24</number>
@@ -1022,11 +872,6 @@ font-size:12px;</string>
           <width>521</width>
           <height>171</height>
          </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(163, 163, 163);
-font-family: &quot;Microsoft YaHei&quot;;
-font-size:12px;</string>
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1075,20 +920,37 @@ font-size:12px;</string>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_5">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox {
+	color: #A3A3A3;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(80, 80, 80);
+	margin-top: 3ex;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	left: 10px;
+	margin-left: 2px;
+	padding: 0 0px;
+}</string>
+       </property>
        <attribute name="title">
         <string>Tab 5</string>
        </attribute>
-       <widget class="QPushButton" name="finish_btn_finish">
+       <widget class="QPushButton" name="finish_btn_run_exe">
         <property name="geometry">
          <rect>
-          <x>450</x>
-          <y>310</y>
-          <width>90</width>
-          <height>28</height>
+          <x>130</x>
+          <y>260</y>
+          <width>300</width>
+          <height>40</height>
          </rect>
         </property>
         <property name="text">
-         <string>Finish</string>
+         <string>Start Now</string>
         </property>
         <property name="shortcut">
          <string>F</string>
@@ -1100,194 +962,77 @@ font-size:12px;</string>
        <widget class="QLabel" name="finish_lbl_title">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>0</y>
-          <width>421</width>
+          <x>270</x>
+          <y>90</y>
+          <width>220</width>
           <height>40</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Microsoft YaHei</family>
-          <pointsize>-1</pointsize>
-          <weight>75</weight>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>16</pointsize>
+          <weight>87</weight>
+          <italic>false</italic>
           <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font-size:18px;
-forn-bold:true;</string>
+         <string notr="true">font: 700 16pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Completing Links Setup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Install Completed</string>
         </property>
        </widget>
        <widget class="QLabel" name="finish_lbl_explain">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>511</width>
-          <height>63</height>
+          <x>80</x>
+          <y>220</y>
+          <width>400</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Links has been installed on your computer.&lt;/p&gt;
-&lt;p style=&quot; margin-top:5px; margin-bottom:5px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Click Finish to close Setup。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>The app has been installed on your computer,welcome to use</string>
         </property>
         <property name="textFormat">
          <enum>Qt::RichText</enum>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         <set>Qt::AlignHCenter|Qt::AlignTop</set>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QGroupBox" name="finish_box1">
+       <widget class="QLabel" name="finish_lbl_logo">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>130</y>
-          <width>241</width>
-          <height>141</height>
+          <x>170</x>
+          <y>70</y>
+          <width>83</width>
+          <height>81</height>
          </rect>
         </property>
-        <property name="title">
-         <string>Client</string>
+        <property name="minimumSize">
+         <size>
+          <width>83</width>
+          <height>81</height>
+         </size>
         </property>
-        <property name="checkable">
-         <bool>false</bool>
+        <property name="maximumSize">
+         <size>
+          <width>83</width>
+          <height>81</height>
+         </size>
         </property>
-        <widget class="QCheckBox" name="finish_ck_run1">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>40</y>
-           <width>181</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Run LinksExplorer</string>
-         </property>
-         <property name="shortcut">
-          <string>R</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="finish_ck_desktop_shorcuts1">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>70</y>
-           <width>181</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Desktop Shorcuts</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="finish_ck_boot1">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>100</y>
-           <width>181</width>
-           <height>18</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Boot</string>
-         </property>
-         <property name="shortcut">
-          <string>B</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QGroupBox" name="finish_box2">
-        <property name="geometry">
-         <rect>
-          <x>290</x>
-          <y>130</y>
-          <width>251</width>
-          <height>141</height>
-         </rect>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Resource/image/img_succeed.png);</string>
         </property>
-        <property name="title">
-         <string>Service</string>
+        <property name="text">
+         <string/>
         </property>
-        <property name="checkable">
-         <bool>false</bool>
-        </property>
-        <widget class="QCheckBox" name="finish_ck_run2">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>40</y>
-           <width>181</width>
-           <height>18</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Run Services_Mgr</string>
-         </property>
-         <property name="shortcut">
-          <string>Ctrl+R</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="finish_ck_desktop_shorcuts2">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>70</y>
-           <width>181</width>
-           <height>18</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Desktop Shorcuts</string>
-         </property>
-         <property name="shortcut">
-          <string>Ctrl+S</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="finish_ck_boot2">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>100</y>
-           <width>181</width>
-           <height>18</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Boot</string>
-         </property>
-         <property name="shortcut">
-          <string>Ctrl+B</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
        </widget>
       </widget>
      </widget>
@@ -1316,13 +1061,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>instfiles_list_widget</tabstop>
   <tabstop>instfiles_btn_next</tabstop>
   <tabstop>instfiles_btn_cancel</tabstop>
-  <tabstop>finish_ck_run1</tabstop>
-  <tabstop>finish_ck_desktop_shorcuts1</tabstop>
-  <tabstop>finish_ck_boot1</tabstop>
-  <tabstop>finish_ck_run2</tabstop>
-  <tabstop>finish_ck_desktop_shorcuts2</tabstop>
-  <tabstop>finish_ck_boot2</tabstop>
-  <tabstop>finish_btn_finish</tabstop>
+  <tabstop>finish_btn_run_exe</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources>

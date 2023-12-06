@@ -14,124 +14,7 @@
    <string>QTSetupPlugin</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">* {
-	font-family: Microsoft YaHei;
-}
-
-QWidget{
-	background-color: rgb(54, 54, 54);
-}
-
-QGroupBox {
-	color: #A3A3A3;
-	border-width: 1px;
-	border-style: solid;
-	border-color: rgb(80, 80, 80);
-	margin-top: 3ex;
-}
-
-QGroupBox::title {
-	subcontrol-origin: margin;
-	subcontrol-position: top left;
-	left: 10px;
-	margin-left: 2px;
-	padding: 0 0px;
-}
-
-QPushButton {
-    border: 1px solid #ff7e00;
-    border-radius: 2px;
-	background:transparent;
-	color:#ff7e00;
-	outline:none;
-	font-size:14px;
-}
-QPushButton::focus {
-    background-color: #ff7e00;
-	color:#ffffff;
-}
-QPushButton::hover {
-    background-color: #ff7e00;
-	color:#ffffff;
-}
-QPushButton:pressed {
-    background-color: #ff7e00;
-	color:#ffffff;
-}
-QPushButton:!enabled{
-	border: 1px solid #999999;
-	color:#999999;
-}
-
-QLabel{
-	color:#ffffff;
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;
-}
-
-QTextEdit
-{
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;
-	background:transparent;
-	border: 1px solid #707070;
-	color: #999999;
-}
-
-QCheckBox
-{
-	color:#ffffff;
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;	
-}
-
-QRadioButton {
-	color: #ffffff;
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size:12px;
-}
-
-QRadioButton::indicator:unchecked {
-	image: url(:/Resource/image/radio_uncheck.png);
-}
-QRadioButton::indicator:disabled{
-	image: url(:/Resource/image/radio_disabled.png);
-}
-QRadioButton:disabled{
-	color:#5D5D5D;
-}
-QRadioButton::indicator:checked {
-	image: url(:/Resource/image/radio_check.png);
-}
-
-QMenu {
-    border-radius:5px; 
-    font-size:15px;
-    background-color:#3B3B3B; 
-    color:rgb(255,255,255);
- }
-QMenu::separator {
-	height: 1px;
-	background: #585858;
-	margin:0 22px
-}
-QMenu::indicator:exclusive:checked {
-	image: none;
-}
-QMenu::item:checked{
-	color:#EF8200;
-}
-QMenu::item {
-	height:35px; 
-	width:85px; 
-	background-color:#3B3B3B; 
-	padding:0 15px;
-}
-QMenu::item:selected {
-	background-color:rgb(237,125,49);
-	color:rgb(255,255,255);
-	padding:0 15px;
-}</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
@@ -139,6 +22,9 @@ QMenu::item:selected {
      <width>560</width>
      <height>400</height>
     </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
@@ -158,21 +44,27 @@ QMenu::item:selected {
     </property>
     <item>
      <widget class="QWidget" name="boxTitle" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>46</height>
+       </size>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(x1:0,y1:0,x2:1,y2:1,stop:0 #343434, stop:1 #1e1e1e);</string>
+       <string notr="true"/>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="spacing">
         <number>8</number>
        </property>
        <property name="leftMargin">
-        <number>2</number>
+        <number>14</number>
        </property>
        <property name="topMargin">
         <number>2</number>
        </property>
        <property name="rightMargin">
-        <number>2</number>
+        <number>14</number>
        </property>
        <property name="bottomMargin">
         <number>2</number>
@@ -187,8 +79,8 @@ QMenu::item:selected {
          </property>
          <property name="minimumSize">
           <size>
-           <width>36</width>
-           <height>36</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -202,7 +94,7 @@ QMenu::item:selected {
        <item>
         <widget class="QLabel" name="lblTitle">
          <property name="styleSheet">
-          <string notr="true">font-size:16px;</string>
+          <string notr="true">font-size:12px;</string>
          </property>
          <property name="text">
           <string>NSIS App 1.0.0.1 Uninstall</string>
@@ -238,21 +130,23 @@ QMenu::item:selected {
          </property>
          <property name="minimumSize">
           <size>
-           <width>26</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>26</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{
 	border:none;
+	background:transparent;
 	border-image: url(:/Resource/image/sysBtnMin_normal.png);
 }
+QPushButton:focus{border-image: url(:/Resource/image/sysBtnMin_hover.png);}
 QPushButton:hover{border-image: url(:/Resource/image/sysBtnMin_hover.png);}
 QPushButton:pressed{border-image: url(:/Resource/image/sysBtnMin_pressed.png);}</string>
          </property>
@@ -271,21 +165,23 @@ QPushButton:pressed{border-image: url(:/Resource/image/sysBtnMin_pressed.png);}<
          </property>
          <property name="minimumSize">
           <size>
-           <width>26</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>26</width>
-           <height>26</height>
+           <width>18</width>
+           <height>18</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{
 	border:none;
+	background:transparent;
 	border-image: url(:/Resource/image/sysBtnClose_normal.png);
 }
+QPushButton:focus{border-image: url(:/Resource/image/sysBtnClose_hover.png);}
 QPushButton:hover{border-image: url(:/Resource/image/sysBtnClose_hover.png);}
 QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);}</string>
          </property>
@@ -310,11 +206,7 @@ QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">QTabWidget{
-	border-color: rgb(29, 29, 29);
-	border-size: 1px;
-}
-QTabWidget::pane
+       <string notr="true">QTabWidget::pane
 {
 	border: -1px;
 	top:-2px;
@@ -335,7 +227,7 @@ QTabWidget::pane
         <property name="geometry">
          <rect>
           <x>160</x>
-          <y>210</y>
+          <y>280</y>
           <width>120</width>
           <height>32</height>
          </rect>
@@ -351,7 +243,7 @@ QTabWidget::pane
         <property name="geometry">
          <rect>
           <x>290</x>
-          <y>210</y>
+          <y>280</y>
           <width>120</width>
           <height>32</height>
          </rect>
@@ -363,35 +255,91 @@ QTabWidget::pane
          <string>C</string>
         </property>
        </widget>
-       <widget class="QLabel" name="welcome_lbl_title">
+       <widget class="QLabel" name="welcome_lbl_ask">
         <property name="geometry">
          <rect>
-          <x>90</x>
-          <y>120</y>
-          <width>391</width>
-          <height>61</height>
+          <x>50</x>
+          <y>234</y>
+          <width>460</width>
+          <height>22</height>
          </rect>
         </property>
         <property name="font">
          <font>
           <family>Microsoft YaHei</family>
-          <pointsize>-1</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font-size:16px;
-forn-bold:true;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Are you sure you want to remove App 1.0.0.1 completely?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Are you sure you want to remove App 1.0.0.1 completely?</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignHCenter|Qt::AlignTop</set>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="welcome_lbl_logo">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>40</y>
+          <width>60</width>
+          <height>60</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">image: url(:/Resource/image/logo.ico);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="welcome_lbl_appname">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>110</y>
+          <width>440</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 700 16pt &quot;Microsoft YaHei UI&quot;;
+</string>
+        </property>
+        <property name="text">
+         <string>App Operation Maintenance System</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="welcome_lbl_app_subname">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>140</y>
+          <width>360</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>App English Name</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </widget>
@@ -434,10 +382,10 @@ forn-bold:true;</string>
          </rect>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please wait while App 1.0.0.1 is being uninstalled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Please wait while App 1.0.0.1 is being uninstalled.</string>
         </property>
         <property name="textFormat">
-         <enum>Qt::RichText</enum>
+         <enum>Qt::AutoText</enum>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -455,11 +403,6 @@ forn-bold:true;</string>
           <height>8</height>
          </rect>
         </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(163, 163, 163);
-font-family: &quot;Microsoft YaHei&quot;;
-font-size:12px;</string>
-        </property>
         <property name="value">
          <number>24</number>
         </property>
@@ -475,11 +418,6 @@ font-size:12px;</string>
           <width>521</width>
           <height>171</height>
          </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(163, 163, 163);
-font-family: &quot;Microsoft YaHei&quot;;
-font-size:12px;</string>
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -532,7 +470,7 @@ font-size:12px;</string>
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>210</y>
+          <y>260</y>
           <width>260</width>
           <height>36</height>
          </rect>
@@ -547,48 +485,70 @@ font-size:12px;</string>
        <widget class="QLabel" name="finish_lbl_title">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>0</y>
-          <width>400</width>
+          <x>270</x>
+          <y>80</y>
+          <width>240</width>
           <height>40</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Microsoft YaHei</family>
-          <pointsize>-1</pointsize>
-          <weight>75</weight>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>16</pointsize>
+          <weight>87</weight>
+          <italic>false</italic>
           <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font-size:16px;
-forn-bold:true;</string>
+         <string notr="true">font: 700 16pt &quot;Microsoft YaHei UI&quot;;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Completing App 1.0.0.1 Uninstall&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Uninstall Completed</string>
         </property>
        </widget>
        <widget class="QLabel" name="finish_lbl_explain">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>50</y>
-          <width>541</width>
-          <height>51</height>
+          <x>80</x>
+          <y>220</y>
+          <width>400</width>
+          <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;App 1.0.0.1 has been uninstalled on your computer.&lt;/p&gt;&lt;p&gt;Click Finish to close Uninstall.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>App 1.0.0.1 has been uninstalled on your computer.</string>
         </property>
         <property name="textFormat">
          <enum>Qt::RichText</enum>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         <set>Qt::AlignHCenter|Qt::AlignTop</set>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="finish_lbl_logo">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>56</y>
+          <width>83</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>83</width>
+          <height>81</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Resource/image/img_succeed.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>

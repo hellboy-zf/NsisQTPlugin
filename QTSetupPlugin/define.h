@@ -8,10 +8,15 @@
 /* GUID保证只有一个实例运行                                                 */
 /************************************************************************/
 
+
+//LinksExploer.exe
+#define  INSTANCE_MUTEX_APP1								_T("57851C6C-2DAE-470D-9675-59BD036457BD")
+
+//ALS_ServiceMgr.exe
+#define  INSTANCE_MUTEX_APP2								_T("AFAF1920-17AB-4118-84DE-9F4D8632FB02")
+
 //NSIS_INSTALL PLUGIN
-#define  INSTANCE_MUTEX_NSIS_INSTALL						_T("8D3BC2AE-DBDF-47F8-A0EE-E0AD4E760974")
-//#define  INSTANCE_MUTEX_APP1								_T("D0D46E3E-E821-4BCF-BF49-193C16CBE539")
-//#define  INSTANCE_MUTEX_APP2								_T("E3922287-EB4B-436E-B197-ADAB5A19FCE0")
+#define  INSTANCE_MUTEX_NSIS_INSTALL						_T("BAA80793-62F8-45E9-AE43-4BE03C2BE827")
 
 
 

@@ -52,6 +52,7 @@ private:
     QLabel* m_lblTitle;
     QLabel* m_lblIconMain;
     QLabel* m_lblText;
+    QPushButton* m_btnSysClose;
     QVBoxLayout* m_layout;
     QDialogButtonBox* m_pButtonBox;
     bool m_mouserPressed;

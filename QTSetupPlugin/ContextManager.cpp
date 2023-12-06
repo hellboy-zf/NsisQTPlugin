@@ -9,6 +9,9 @@
 #include <sstream>
 #include <iostream>
 #include <codecvt>
+#include <tlhelp32.h>
+#include <tchar.h>
+#include <algorithm>
 #include "define.h"
 
 
@@ -62,6 +65,16 @@ std::wstring ContextManager::getAppName()
 	return m_strAppName;
 }
 
+void ContextManager::setAppAliasName(const TCHAR* aliasName)
+{
+	m_strAliasName = aliasName;
+}
+
+std::wstring ContextManager::getAppAliasName()
+{
+	return m_strAliasName;
+}
+
 void ContextManager::setAppVersion(const TCHAR* verstion)
 {
 	m_strAppVersion = verstion;
@@ -85,6 +98,16 @@ void ContextManager::setRequireSize(int32_t size)
 int32_t ContextManager::getRequireSize()
 {
 	return m_iRequreSize;
+}
+
+void ContextManager::setExeName(const TCHAR* name)
+{
+	m_strExeName = name;
+}
+
+std::wstring ContextManager::getExeName()
+{
+	return m_strExeName;
 }
 
 int readLicenseText(const std::wstring& strLicensePath)
@@ -155,6 +178,7 @@ extra_parameters* ContextManager::getExtraParameters()
 void ContextManager::showInstallWindow(const TCHAR* szPluginDir, int iLangType)
 {
 	std::wstring str(szPluginDir);
+	int nLangType(iLangType);
 	if (!str.empty()) {
 		QApplication::addLibraryPath(tstringToQString(szPluginDir));
 	}
@@ -172,11 +196,12 @@ void ContextManager::showInstallWindow(const TCHAR* szPluginDir, int iLangType)
 	QApplication a(argc, argv);
 	m_installPagePtr = new QTInstallPage();
 
-	if (iLangType == 0)
-		iLangType = GetUserDefaultUILanguage();//"win10>设置>语言>Windows显示语言"
+
+	if (nLangType <= 0)
+		nLangType = GetUserDefaultUILanguage();//"win10>设置>语言>Windows显示语言"
 	//Note: QTranslator must be initialized here, otherwise the program will crash as an NSIS plugin dll
 	//m_installPagePtr->m_qTranslator = new QTranslator();
-	m_installPagePtr->SetLanguage(iLangType);
+	m_installPagePtr->SetLanguage(nLangType, iLangType >= 0);
 
 	if (m_installPagePtr->CheckMutexProgramRunning())
 		return;
@@ -188,6 +213,7 @@ void ContextManager::showInstallWindow(const TCHAR* szPluginDir, int iLangType)
 void ContextManager::showUninstallWindow(const TCHAR* szPluginDir, int iLangType)
 {
 	std::wstring str(szPluginDir);
+	int nLangType(iLangType);
 	if (!str.empty()) {
 		QApplication::addLibraryPath(tstringToQString(szPluginDir));
 	}
@@ -204,10 +230,10 @@ void ContextManager::showUninstallWindow(const TCHAR* szPluginDir, int iLangType
 
 	QApplication a(argc, argv);
 	m_uninstallPagePtr = new QTUninstallPage();
-	if (iLangType == 0)
-		iLangType = GetUserDefaultUILanguage();//"win10>设置>语言>Windows显示语言"
+	if (nLangType <= 0)
+		nLangType = GetUserDefaultUILanguage();//"win10>设置>语言>Windows显示语言"
 	//Note: QTranslator must be initialized here, otherwise the program will crash as an NSIS plugin dll
-	m_uninstallPagePtr->SetLanguage(iLangType);
+	m_uninstallPagePtr->SetLanguage(nLangType);
 
 	if (m_uninstallPagePtr->CheckMutexProgramRunning())
 		return;
@@ -239,28 +265,27 @@ bool ContextManager::ExecuteNsisFunction(long funcAddress)
 	return false;
 }
 
-int ContextManager::CheckMutexProgramRunning()
+DWORD ContextManager::IsAppRunning(const std::wstring& appName)
 {
-	//m_handleMutex = CreateMutex(NULL, TRUE, INSTANCE_MUTEX_APP1);
-	//if (GetLastError() == ERROR_ALREADY_EXISTS)
-	//{
-	//	return 2;
-	//}
-	//CloseHandle(m_handleMutex);
+	std::wstring strName(appName);
+	if (_tcsstr(strName.c_str(), _T(".exe")) == NULL)
+		strName += _T(".exe");
 
-	//m_handleMutex = CreateMutex(NULL, TRUE, INSTANCE_MUTEX_APP2);
-	//if (GetLastError() == ERROR_ALREADY_EXISTS)
-	//{
-	//	return 3;
-	//}
-	//CloseHandle(m_handleMutex);
-
-	m_handleMutex = CreateMutex(NULL, TRUE, INSTANCE_MUTEX_NSIS_INSTALL);
-	if (GetLastError() == ERROR_ALREADY_EXISTS)
-	{
-		return 1;
+	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	PROCESSENTRY32 pe32;
+	pe32.dwSize = sizeof(PROCESSENTRY32);
+	if (!Process32First(hSnapshot, &pe32)) {
+		CloseHandle(hSnapshot);
+		return 0;
 	}
-
+	do {
+		std::wstring str(pe32.szExeFile);
+		if (_tcsicmp(str.c_str(), strName.c_str()) == 0) {
+			CloseHandle(hSnapshot);
+			return pe32.th32ProcessID;
+		}
+	} while (Process32Next(hSnapshot, &pe32));
+	CloseHandle(hSnapshot);
 	return 0;
 }
 

@@ -1,5 +1,6 @@
 ﻿#include "QTSetupPluginHelper.h"
 #include "ContextManager.h"
+#include <sstream>
 #pragma comment(lib,"User32.lib")
 
 
@@ -34,12 +35,12 @@ void NewThreadRun(HWND hwndParent, int string_size, TCHAR* variables, stack_t** 
 	t.detach();
 }
 
-void CheckMutexProgramRunning(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
-{
-
-	int iRet = ContextManager::getInstance()->CheckMutexProgramRunning();
-	pushint(iRet);
-}
+//void CheckMutexProgramRunning(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
+//{
+//
+//	int iRet = ContextManager::getInstance()->CheckMutexProgramRunning();
+//	pushint(iRet);
+//}
 
 void FinalCall(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
 {
@@ -57,10 +58,15 @@ void InitSetupPluginHelper(HWND hwndParent, int string_size, TCHAR* variables, s
 
 	int iAppFilesSize = popint();
 
+	TCHAR szExeName[MAX_PATH] = { 0 };
+	popstring(szExeName);
+
+
+
 	ContextManager::getInstance()->setAppName(szAppName);
 	ContextManager::getInstance()->setAppVersion(szAppVersion);
 	ContextManager::getInstance()->setRequireSize(iAppFilesSize);
-
+	ContextManager::getInstance()->setExeName(szExeName);
 }
 
 void ShowInstallWindow(HWND hwndParent, int string_size, TCHAR *variables, stack_t **stacktop, extra_parameters *extra)
@@ -72,7 +78,7 @@ void ShowInstallWindow(HWND hwndParent, int string_size, TCHAR *variables, stack
 	TCHAR szLanguage[20] = { 0 };
 	popstring(szLanguage);
 
-	int iLangType(0);
+	int iLangType(-1);
 	iLangType = _tstoi(szLanguage);
 
     ContextManager::getInstance()->showInstallWindow(szNsisPluginDir, iLangType);
@@ -115,77 +121,42 @@ void GetInstallDirectory(HWND hwndParent, int string_size, TCHAR* variables, sta
 	pushstring(strInstallDir.c_str());
 }
 
-void IsRunExe1(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
+void IsRunExe(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
 {
 	NSMETHOD_INIT()
 	
 	int iRet(0);
 	if (ContextManager::getInstance()->getInstallPagePtr())
 	{
-		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsRunExe1();
+		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsRunExe();
 	}
 	pushint(iRet);
 }
 
-void IsCreateDesktopShortcutExe1(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
+void IsCreateDesktopShortcutExe(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
 {
 	NSMETHOD_INIT()
 	
 	int iRet(0);
 	if (ContextManager::getInstance()->getInstallPagePtr())
 	{
-		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsCreateDesktopShortcutExe1();
+		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsCreateDesktopShortcutExe();
 	}
 	pushint(iRet);
 }
 
-void IsBootExe1(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
+void IsBootExe(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
 {
 	NSMETHOD_INIT()
 	
 	int iRet(0);
 	if (ContextManager::getInstance()->getInstallPagePtr())
 	{
-		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsBootExe1();
+		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsBootExe();
 	}
 	pushint(iRet);
 }
 
-void IsRunExe2(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
-{
-	NSMETHOD_INIT()
-		
-	int iRet(0);
-	if (ContextManager::getInstance()->getInstallPagePtr())
-	{
-		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsRunExe2();
-	}
-	pushint(iRet);
-}
-
-void IsCreateDesktopShortcutExe2(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
-{
-	NSMETHOD_INIT()
-		
-	int iRet(0);
-	if (ContextManager::getInstance()->getInstallPagePtr())
-	{
-		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsCreateDesktopShortcutExe2();
-	}
-	pushint(iRet);
-}
-
-void IsBootExe2(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
-{
-	NSMETHOD_INIT()
-		
-	int iRet(0);
-	if (ContextManager::getInstance()->getInstallPagePtr())
-	{
-		iRet = ContextManager::getInstance()->getInstallPagePtr()->IsBootExe2();
-	}
-	pushint(iRet);
-}
 
 void GetLanguageType(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
 {
@@ -211,8 +182,20 @@ void UnInitUninstallPluginHelper(HWND hwndParent, int string_size, TCHAR* variab
 	TCHAR szAppVersion[MAX_PATH] = { 0 };
 	popstring(szAppVersion);
 
+	TCHAR szExeName[MAX_PATH] = { 0 };
+	popstring(szExeName);
+
+	TCHAR szAppAliasName[MAX_PATH] = { 0 };
+	popstring(szAppAliasName);
+
+	std::wstring str(szAppAliasName);
+	std::replace(str.begin(), str.end(), _T('&'), _T(' '));
+
 	ContextManager::getInstance()->setAppName(szAppName);
 	ContextManager::getInstance()->setAppVersion(szAppVersion);
+
+	ContextManager::getInstance()->setExeName(szExeName);
+	ContextManager::getInstance()->setAppAliasName(str.c_str());
 }
 
 void UnShowUninstallWindow(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)

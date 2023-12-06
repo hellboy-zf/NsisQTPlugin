@@ -1,0 +1,240 @@
+* {
+	font-family: Microsoft YaHei;
+}
+
+QWidget#centralWidget {
+	border-image: url(:/Resource/image/back1.png);
+}
+
+QPushButton {
+	border: 1px solid #1890ff;
+	color:#1890ff;
+	background-color:#ffffff;
+	border-radius: 4px;		
+	outline:none;
+	font-size:14px;
+}
+QPushButton::focus {
+    background-color: #1890ff;
+	color:#ffffff;
+}
+QPushButton::hover {
+    background-color: #1890ff;
+	color:#ffffff;
+}
+QPushButton:pressed {
+    background-color: #266fe8;
+	color:#ffffff;
+}
+QPushButton:disabled{
+	border: 1px solid rgba(113,187,255,128);
+	color:rgba(113,187,255,128);
+	background:transparent;
+}
+
+QLabel{
+	color:#ffffff;
+	background::transparent;
+	font-size:12px;
+}
+
+QTextEdit
+{
+	font-size:12px;
+	background:transparent;
+	border: 1px solid rgba(255,255,255,50);
+	color: #ffffff;
+}
+
+QLineEdit
+{
+	font-size:12px;
+	background:rgba(255,255,255,100);
+	color:#ffffff;
+	border:none
+}
+
+QCheckBox
+{
+	color:#ffffff;
+	font-size:12px;	
+}
+
+QRadioButton {
+	color: #ffffff;
+	font-size:12px;
+}
+QRadioButton::indicator:checked {
+	image: url(:/Resource/image/radio_check.png);
+}
+QRadioButton::indicator:checked:hover {
+	image: url(:/Resource/image/radio_check_hover.png);
+}
+QRadioButton::indicator:unchecked {
+	image: url(:/Resource/image/radio_uncheck.png);
+}
+QRadioButton::indicator:unchecked:hover {
+	image: url(:/Resource/image/radio_uncheck_hover.png);
+}
+QRadioButton:disabled{
+	color:rgba(255,255,255,76);
+}
+
+QListWidget {
+	color:#f0f0f0;
+	font-size:12px;
+	background:transparent;
+	border: 1px solid rgba(255,255,255,50);
+}
+
+QScrollBar:vertical{
+	margin:0px 0px 0px 0px;
+	background-color:rgba(255,255,255,50);
+	width:4px;
+}
+
+QScrollBar::handle:vertical{
+	background-color:#ffffff;
+	border: none;
+	width:4px;
+	min-height: 20px;
+}
+
+QScrollBar::add-line:vertical {
+      border: none;
+      background: none;
+}
+
+QScrollBar::sub-line:vertical {
+      border: none;
+      background: none;
+}
+
+QScrollBar::handle:vertical:pressed{
+	background-color:#e0e0e0;
+}
+
+QScrollBar::sub-page:vertical,QScrollBar::add-page:vertical{
+	background-color:rgba(255,255,255,50);
+}
+
+QProgressBar {
+    border: none;
+	background-color:rgba(255,255,255,50);
+    border-radius: 1px;
+	height:4;
+}
+
+QProgressBar::chunk {
+    background-color: #ffffff;
+	width: 10px;
+}
+
+QMenu {
+    border-radius:5px; 
+    font-size:15px;
+    background-color:#f9f9f9; 
+    color:#bde5ff;
+ }
+QMenu::separator {
+	height: 1px;
+	background: #d7d7d7;
+	margin:0 22px
+}
+QMenu::indicator:exclusive:checked {
+	image: none;
+}
+
+QMenu::item {
+	height:35px; 
+	width:85px; 
+	background-color:#f9f9f9; 
+	padding:0 15px;
+}
+
+QMenu::item:checked{
+	color:#1890ff;
+}
+QMenu::item:selected {
+	background-color:#1890ff;
+	color:#ffffff;
+	padding:0 15px;
+}
+
+QWidget#msgBox_widget {
+	background-color: #1890ff;
+}
+
+QGroupBox#msgBox_box {
+	background-color: #f9f9f9;
+	border:1px solid #e0e0e0;
+	margin-top: 0ex;
+}
+
+QLabel#msgBox_lblTitle{
+	font-size:14px;
+}
+
+QLabel#msgbox_lblText{	
+	font-size:12px;
+	color:#1890ff;
+}
+
+QLabel#welcome_lbl_ask, QLabel#finish_lbl_explain {
+	color:#666666;
+}
+
+QPushButton#license_btn_back, QPushButton#license_btn_next, QPushButton#license_btn_cancel, QPushButton#instfiles_btn_next, QPushButton#instfiles_btn_cancel {
+	color:#1890ff;
+	background-color:#ffffff;	
+	border: 1px solid #1890ff;
+	border-radius: 4px;	
+}
+QPushButton#license_btn_back::focus, QPushButton#license_btn_next::focus, QPushButton#license_btn_cancel::focus, QPushButton#instfiles_btn_next::focus, QPushButton#instfiles_btn_cancel::focus {
+    background-color: #266fe8;
+	color:#ffffff;
+}
+QPushButton#license_btn_back::hover, QPushButton#license_btn_next::hover, QPushButton#license_btn_cancel::hover, QPushButton#instfiles_btn_next::hover, QPushButton#instfiles_btn_cancel::hover {
+    background-color: #266fe8;
+	color:#ffffff;
+}
+QPushButton#license_btn_back::pressed, QPushButton#license_btn_next::pressed, QPushButton#license_btn_cancel::pressed, QPushButton#instfiles_btn_next::pressed, QPushButton#instfiles_btn_cancel::pressed {
+    background-color: #0034b5;
+	color:#ffffff;
+}
+QPushButton#license_btn_back::disabled, QPushButton#license_btn_next::disabled, QPushButton#license_btn_cancel::disabled, QPushButton#instfiles_btn_next::disabled, QPushButton#instfiles_btn_cancel::disabled{
+	border: 1px solid rgba(255,255,255,76);
+	color:rgba(255,255,255,76);
+	background:transparent;
+}
+
+
+QPushButton#directory_btn_dir_select {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #cccccc, stop: 0.78 #cccccc,
+                                stop: 0.78 #1890ff, stop: 1.0 #1890ff);
+	
+	border:1px solid rgba(255,255,255,100);
+	color:#ffffff;	
+	border-radius: none;
+	outline:none;
+	font-size:14px;
+}
+QPushButton#directory_btn_dir_select::focus {
+        background: qlineargradient(x1: 0, y1: 1, x2: 0, y2: 0,
+                                stop: 0 #cccccc, stop: 0.78 #cccccc,
+                                stop: 0.78 #1890ff, stop: 1.0 #1890ff);
+}
+QPushButton#directory_btn_dir_select::hover {
+    	background: qlineargradient(x1: 0, y1: 1, x2: 0, y2: 0,
+                                stop: 0 #cccccc, stop: 0.78 #cccccc,
+                                stop: 0.78 #1890ff, stop: 1.0 #1890ff);
+}
+QPushButton#directory_btn_dir_select:pressed {
+        background: qlineargradient(x1: 0, y1: 1, x2: 0, y2: 0,
+                                stop: 0 #cccccc, stop: 0.78 #cccccc,
+                                stop: 0.78 #1890ff, stop: 1.0 #1890ff);
+}
+QPushButton#directory_btn_dir_select:!enabled{
+	color:#999999;
+}

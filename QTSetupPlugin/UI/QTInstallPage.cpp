@@ -7,21 +7,115 @@
 #include "../define.h"
 #include "CMessageBox.h"
 
+
+void SetAppStartLanguage(const QString& filePath, int32_t nIndex, int32_t nType)
+{
+	return; //设置启动语言
+
+	//if (filePath.isEmpty())
+		//return;
+	//QString strFileName("AmasterClient.xml");
+	//QString strName("LANGUAGE");
+	//QString strValue("en");
+
+	//if (nType == INT_LANG_CN)
+	//	strValue = "chs";
+	//else if (nType == INT_LANG_TW)
+	//	strValue = "cht";
+
+	//QString strFile = QString("%1\\AmasterClient\\%2").arg(filePath, strFileName);
+
+	//if (nIndex == 2)
+	//{
+	//	strFileName = "ServerConfig.xml";
+	//	if (nType == INT_LANG_CN)
+	//		strValue = "zh-CN";
+	//	else if (nType == INT_LANG_TW)
+	//		strValue = "zh-Hant";
+	//	strFile = QString("%1\\AmasterServer\\%2").arg(filePath, strFileName);
+	//}
+
+	//QFile file(strFile);
+	//if (!file.open(QFile::ReadOnly | QFile::Text))
+	//	return;
+
+	//// Create a QXmlStreamReader object and set it to read from the file
+	//QXmlStreamReader xmlReader(&file);
+
+	//// Create a temporary file for writing the modified XML
+	//QTemporaryFile tempFile;
+	//if (!tempFile.open()) {
+	//	return;
+	//}
+
+	//// Create a QXmlStreamWriter object and set it to write to the temporary file
+	//QXmlStreamWriter xmlWriter(&tempFile);
+	//xmlWriter.setAutoFormatting(true);
+	//xmlWriter.writeStartDocument();
+
+	//// Traverse the XML file using QXmlStreamReader and write each node to the temporary file using QXmlStreamWriter
+	//while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+	//	QXmlStreamReader::TokenType token = xmlReader.readNext();
+	//	if (token == QXmlStreamReader::StartElement) {
+	//		xmlWriter.writeStartElement(xmlReader.name().toString());
+	//		if (xmlReader.name() == "item" && xmlReader.attributes().value("name") == strName) {
+	//			for (auto& attribute : xmlReader.attributes())
+	//			{
+	//				if (attribute.name() != "value")
+	//					xmlWriter.writeAttribute(attribute.name().toString(), attribute.value().toString());
+	//			}
+	//			xmlWriter.writeAttribute("value", strValue);
+	//		}
+	//		else
+	//			xmlWriter.writeAttributes(xmlReader.attributes());
+	//	}
+	//	else if (token == QXmlStreamReader::EndElement) {
+	//		xmlWriter.writeEndElement();
+	//	}
+	//	else if (token == QXmlStreamReader::Comment) {
+	//		xmlWriter.writeComment(xmlReader.text().toString());
+	//	}
+	//	else if (token == QXmlStreamReader::Characters) {
+	//		xmlWriter.writeCharacters(xmlReader.text().toString());
+	//	}
+	//}
+	//xmlWriter.writeEndDocument();
+
+	//file.close();
+
+	//if (!file.open(QFile::WriteOnly | QFile::Truncate | QFile::Text))
+	//	return;
+
+	//tempFile.reset();
+	//QByteArray data = tempFile.readAll();
+	//file.write(data);
+
+	//tempFile.close();
+	//file.close();
+}
+
 QTInstallPage::QTInstallPage(QWidget *parent)
     : FramelessMainWindow(true,parent)
 	, m_extractFilesFinished(false)
 	, m_qTranslator(nullptr)
 	, m_iLangType(INT_LANG_EN)
 	, m_driverFreeGb(0.0)
+	, m_isRunExe(false)
 {
     ui.setupUi(this);
 	setWindowIcon(QIcon(":/Resource/image/logo.ico"));
-	
+	FramelessMainWindow::loadStyleSheetFile(":/Resource/css/main.css", this);
 
 	FramelessMainWindow::setAllWidgetMouseTracking(this);
+	
+
 	setResizeable(false);
 	setTitlebar({ ui.boxTitle });
 	ui.tabWidget->tabBar()->hide();
+
+	m_style1 = m_style2 = m_style3 = styleSheet();
+	m_style2.replace("back1.png", "back2.png");
+	m_style3.replace("back1.png", "back3.png");
 
 	SetCurrentPage(0);
 
@@ -35,7 +129,10 @@ QTInstallPage::QTInstallPage(QWidget *parent)
 		});
 
 	connect(ui.btnClose, &QPushButton::clicked, [this]() {
-		InstallExit();
+		if (ui.tabWidget->currentIndex() == 4)
+			InstallFinished();
+		else
+			InstallExit();
 		});
 
 	/**********************************Welcome Page****************************************/
@@ -93,10 +190,14 @@ QTInstallPage::QTInstallPage(QWidget *parent)
 
 	connect(ui.directory_btn_dir_select, &QPushButton::clicked, [this]() {
 		QString dir = QFileDialog::getExistingDirectory(this, tr("00010001"), "/", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+		ui.directory_btn_install->setFocus();
 		if (dir.isEmpty())
 			return;
 		dir = QDir::toNativeSeparators(dir);
-		dir += "\\" + tstringToQString(ContextManager::getInstance()->getAppName());
+		//根目录自带"\\"
+		if (!dir.endsWith("\\"))
+			dir += "\\";
+		dir += tstringToQString(ContextManager::getInstance()->getAppName());
 		ui.directory_edit_dir->setText(dir);
 		UpdateDriverInfo();
 		});
@@ -128,11 +229,14 @@ QTInstallPage::QTInstallPage(QWidget *parent)
 	m_vecEnterBtns.push_back(ui.instfiles_btn_next);
 	/**********************************Finish Page****************************************/
 
-	connect(ui.finish_btn_finish, &QPushButton::clicked, [this]() {
+	connect(ui.finish_btn_run_exe, &QPushButton::clicked, [this]() {
+		m_isRunExe = true;
 		InstallFinished();
 		});
 
-	m_vecEnterBtns.push_back(ui.finish_btn_finish);
+	m_vecEnterBtns.push_back(ui.finish_btn_run_exe);
+
+
 	/**********************************Multi-Language****************************************/
 
 	m_strAppNameVersion = tstringToQString(ContextManager::getInstance()->getAppNameVersion());
@@ -174,32 +278,35 @@ QTInstallPage::~QTInstallPage()
 
 bool QTInstallPage::CheckMutexProgramRunning()
 {
-	int iRet = ContextManager::getInstance()->CheckMutexProgramRunning();
-	if (iRet)
+	bool bRet(false);
+	QString strText;
+	if (ContextManager::getInstance()->IsAppRunning(ContextManager::getInstance()->getExeName()))
 	{
-		QString strText;
 		strText = tr("00010006");
-		switch (iRet)
-		{
-		case 2:
-			strText = strText.arg("App1");
-			break;
-		case 3:
-			strText = strText.arg("App2");
-			break;
-		default:
-			strText = strText.arg("Install");
-			break;
-		}
-		CMessageBox box(this, CMessageBox::Question, tr("00010002"), strText);
-		box.setBtnTextOk(tr("00010007"));
-		box.exec();
-		return true;
+		strText = strText.arg(tstringToQString(ContextManager::getInstance()->getExeName()));
+		bRet = true;
 	}
-	return false;
+	//else
+	//{
+	//	TCHAR szFilePath[MAX_PATH + 1] = { 0 };
+	//	::GetModuleFileName(NULL, szFilePath, MAX_PATH);
+	//	TCHAR* name = _tcsrchr(szFilePath, _T('\\')) + 1;
+	//	if (ContextManager::getInstance()->IsAppRunning(name))
+	//	{
+	//		strText = tr("00010006");
+	//		strText = strText.arg("Installer");
+	//		bRet = true;
+	//	}
+	//}
+	if (bRet && !strText.isEmpty())
+	{
+		CMessageBox box(this, CMessageBox::Error, tr("00010002"), strText);
+		box.exec();
+	}
+	return bRet;
 }
 
-void QTInstallPage::SetLanguage(int iLangType)
+void QTInstallPage::SetLanguage(int iLangType, bool showBtnLang)
 {
 
 	switch (iLangType)
@@ -217,6 +324,7 @@ void QTInstallPage::SetLanguage(int iLangType)
 		SetLanguage(QTextCodec::codecForLocale()->toUnicode(STR_LANG_EN));
 		break;
 	}
+	ui.btnLang->setVisible(showBtnLang);
 }
 
 int QTInstallPage::GetLanguageType()
@@ -297,25 +405,30 @@ void QTInstallPage::SetLanguage(QString strLang)
 void QTInstallPage::SetCurrentPage(int iIndex)
 {
 	ui.btnLang->setEnabled(false);
+	ui.btnClose->setEnabled(true);
 	switch (iIndex)
 	{
 	case 0:
+		setStyleSheet(m_style1);
 		ui.welcome_btn_next->setFocus();
 		ui.btnLang->setEnabled(true);
 		break;
 	case 1:
+		setStyleSheet(m_style2);
 		ui.license_btn_next->setFocus();
 		break;
 	case 2:
+		setStyleSheet(m_style1);
 		ui.directory_btn_install->setFocus();
 		break;
 	case 3:
-		//ui.btnClose->setEnabled(false);
+		setStyleSheet(m_style2);
+		ui.btnClose->setEnabled(false);
 		ui.instfiles_btn_next->setFocus();
 		break;
 	case 4:
-		ui.btnClose->setEnabled(false);
-		ui.finish_btn_finish->setFocus();
+		setStyleSheet(m_style3);
+		ui.finish_btn_run_exe->setFocus();
 		m_extractFilesFinished = true;
 		break;
 	default:
@@ -376,6 +489,15 @@ void QTInstallPage::SetInstallStepDescription(const std::wstring& description, i
 
 void QTInstallPage::NsisExtractFilesFinished()
 {
+	m_tasks =
+	{
+	concurrency::create_task([this] {
+			SetAppStartLanguage(ui.directory_edit_dir->text(),1,m_iLangType);
+		}),
+	concurrency::create_task([this] {
+			SetAppStartLanguage(ui.directory_edit_dir->text(),2,m_iLangType);
+		})
+	};
 
 	QMetaObject::invokeMethod(this, [this]() {
 		ui.instfiles_btn_next->setEnabled(true);
@@ -388,35 +510,24 @@ void QTInstallPage::NsisExtractFilesFinished()
 		}, Qt::BlockingQueuedConnection);
 }
 
-bool QTInstallPage::IsRunExe1()
+bool QTInstallPage::IsRunExe()
 {
-	return ui.finish_ck_run1->isChecked();
+	return m_isRunExe;
+	//return ui.finish_ck_run1->isChecked();
 }
 
-bool QTInstallPage::IsCreateDesktopShortcutExe1()
+bool QTInstallPage::IsCreateDesktopShortcutExe()
 {
-	return ui.finish_ck_desktop_shorcuts1->isChecked();
+	return true;
+	//return ui.finish_ck_desktop_shorcuts1->isChecked();
 }
 
-bool QTInstallPage::IsBootExe1()
+bool QTInstallPage::IsBootExe()
 {
-	return ui.finish_ck_boot1->isChecked();
+	return false;
+	//return ui.finish_ck_boot1->isChecked();
 }
 
-bool QTInstallPage::IsRunExe2()
-{
-	return ui.finish_ck_run2->isChecked();
-}
-
-bool QTInstallPage::IsCreateDesktopShortcutExe2()
-{
-	return ui.finish_ck_desktop_shorcuts2->isChecked();
-}
-
-bool QTInstallPage::IsBootExe2()
-{
-	return ui.finish_ck_boot2->isChecked();
-}
 
 
 void QTInstallPage::InstallStart()
@@ -450,7 +561,7 @@ void QTInstallPage::InstallStart()
 	
 	if (dirError)
 	{
-		CMessageBox box(this, CMessageBox::Question, tr("00010002"), tr("00010013").arg(dirError,4,10, QChar('0')));
+		CMessageBox box(this, CMessageBox::Error, tr("00010002"), tr("00010013").arg(dirError,4,10, QChar('0')));
 		box.setBtnTextOk(tr("00010007"));
 		box.exec();
 		return;
@@ -506,6 +617,8 @@ void QTInstallPage::InstallExit(int nType)
 
 void QTInstallPage::InstallFinished()
 {
+	auto jointasks = concurrency::when_all(m_tasks.begin(),m_tasks.end());
+	jointasks.wait();
 	InstallExit(0);
 	ContextManager::getInstance()->ExecuteNsisFunEvent(INSTALL_EVENT_BEFORE_FINISHED);
 }
@@ -589,8 +702,8 @@ void QTInstallPage::TranslateText()
 
 	double requiredMb = (double)ContextManager::getInstance()->getRequireSize() / 1024 / 1024;
 	if (requiredMb <= 0.0)
-		requiredMb = 130.0;
-	requiredMb += 30; // 数据预留内存
+		requiredMb = 100.0;
+	//requiredMb += 30; // 数据预留内存
 	ui.directory_lbl_mem_required->setText(tr("00010004").arg(requiredMb, 0, 'f', 1));
 
 
@@ -623,30 +736,22 @@ void QTInstallPage::TranslateText()
 
 
 	/**********************************Finish Page****************************************/
-	QString strAppName1, strAppName2;
-	strAppName1 = ui.finish_box1->title();
-	strAppName2 = ui.finish_box2->title();
+	//QString strAppName;
+	//strAppName = ui.finish_box->title();
 
-	ui.finish_lbl_title->setText(tr("00010600").arg(m_strAppNameVersion));
+	ui.finish_lbl_title->setText(tr("00010600"));
 	ui.finish_lbl_explain->setText(tr("00010601").arg(m_strAppNameVersion));
-	ui.finish_ck_run1->setText(tr("00010602").arg(strAppName1));
-	ui.finish_ck_desktop_shorcuts1->setText(tr("00010603"));
-	ui.finish_ck_boot1->setText(tr("00010604"));
+	//ui.finish_ck_run->setText(tr("00010602").arg(strAppName));
+	//ui.finish_ck_desktop_shorcuts->setText(tr("00010603"));
+	//ui.finish_ck_boot->setText(tr("00010604"));
 
-	ui.finish_ck_run2->setText(tr("00010605").arg(strAppName2));
-	ui.finish_ck_desktop_shorcuts2->setText(tr("00010606"));
-	ui.finish_ck_boot2->setText(tr("00010607"));
-
-	ui.finish_btn_finish->setText(tr("00010608"));
+	ui.finish_btn_run_exe->setText(tr("00010608"));
 
 #if QT_CONFIG(shortcut)
-	ui.finish_btn_finish->setShortcut(QString("F"));
-	ui.finish_ck_run1->setShortcut(QString("R"));
-	ui.finish_ck_desktop_shorcuts1->setShortcut(QString("S"));
-	ui.finish_ck_boot1->setShortcut(QString("B"));
-	ui.finish_ck_run2->setShortcut(QString("Ctrl+R"));
-	ui.finish_ck_desktop_shorcuts2->setShortcut(QString("Ctrl+S"));
-	ui.finish_ck_boot2->setShortcut(QString("Ctrl+B"));
+	ui.finish_btn_run_exe->setShortcut(QString("F"));
+	//ui.finish_ck_run->setShortcut(QString("R"));
+	//ui.finish_ck_desktop_shorcuts->setShortcut(QString("S"));
+	//ui.finish_ck_boot->setShortcut(QString("B"));
 #endif // QT_CONFIG(shortcut)
 
 }

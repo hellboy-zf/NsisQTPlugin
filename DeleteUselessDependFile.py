@@ -1,13 +1,13 @@
 import os
 import sys
 
-dependent_files_debug = ('Qt5Cored.dll', 'Qt5Guid.dll', 'Qt5Widgetsd.dll', 
+dependent_files_debug = ('Qt5Cored.dll', 'Qt5Guid.dll', 'Qt5Widgetsd.dll', 'Qt5Xmld.dll',
                          'qgifd.dll', 'qicnsd.dll', 'qicod.dll', 'qjpegd.dll',
                          'qtgad.dll', 'qtiffd.dll', 'qwbmpd.dll', 'qwebpd.dll',
                          'qwindowsd.dll',
                          'qwindowsvistastyled.dll')
 
-dependent_files_release = ('Qt5Core.dll', 'Qt5Gui.dll', 'Qt5Widgets.dll', 
+dependent_files_release = ('Qt5Core.dll', 'Qt5Gui.dll', 'Qt5Widgets.dll', 'Qt5Xml.dll',
                            'qgif.dll', 'qicns.dll', 'qico.dll', 'qjpeg.dll',
                            'qtga.dll', 'qtiff.dll', 'qwbmp.dll', 'qwebp.dll',
                            'qwindows.dll',

@@ -14,12 +14,16 @@ QTUninstallPage::QTUninstallPage(QWidget *parent)
 {
     ui.setupUi(this);
 	setWindowIcon(QIcon(":/Resource/image/logo.ico"));
-	//FramelessMainWindow::loadStyleSheetFile(":/Resource/style/main.css", this);
+	FramelessMainWindow::loadStyleSheetFile(":/Resource/css/main.css", this);
 
 	FramelessMainWindow::setAllWidgetMouseTracking(this);
 	setResizeable(false);
 	setTitlebar({ ui.boxTitle });
 	ui.tabWidget->tabBar()->hide();
+
+	m_style1 = m_style2 = m_style3 = styleSheet();
+	m_style2.replace("back1.png", "back2.png");
+	m_style3.replace("back1.png", "back3.png");
 
 	SetCurrentPage(0);
 
@@ -32,7 +36,10 @@ QTUninstallPage::QTUninstallPage(QWidget *parent)
 		});
 
 	connect(ui.btnClose, &QPushButton::clicked, [this]() {
-		UninstallExit();
+		if (ui.tabWidget->currentIndex() == 2)
+			UninstallFinished();
+		else
+			UninstallExit();
 		});
 
 	/**********************************Welcome Page****************************************/
@@ -75,29 +82,32 @@ QTUninstallPage::~QTUninstallPage()
 
 bool QTUninstallPage::CheckMutexProgramRunning()
 {
-	int iRet = ContextManager::getInstance()->CheckMutexProgramRunning();
-	if (iRet)
+	bool bRet(false);
+	QString strText;
+	if (ContextManager::getInstance()->IsAppRunning(ContextManager::getInstance()->getExeName()))
 	{
-		QString strText;
-		strText = tr("00020005");
-		switch (iRet)
-		{
-		case 2:
-			strText = strText.arg("App1");
-			break;
-		case 3:
-			strText = strText.arg("App2");
-			break;
-		default:
-			strText = strText.arg("Install");
-			break;
-		}
-		CMessageBox box(this, CMessageBox::Question, tr("00020001"), strText);
-		box.setBtnTextOk(tr("00020002"));
-		box.exec();
-		return true;
+		strText = tr("00010006");
+		strText = strText.arg(tstringToQString(ContextManager::getInstance()->getExeName()));
+		bRet = true;
 	}
-	return false;
+	//else
+	//{
+	//	TCHAR szFilePath[MAX_PATH + 1] = { 0 };
+	//	::GetModuleFileName(NULL, szFilePath, MAX_PATH);
+	//	TCHAR* name = _tcsrchr(szFilePath, _T('\\')) + 1;
+	//	if (ContextManager::getInstance()->IsAppRunning(name))
+	//	{
+	//		strText = tr("00010006");
+	//		strText = strText.arg("Installer");
+	//		bRet = true;
+	//	}
+	//}
+	if (bRet && !strText.isEmpty())
+	{
+		CMessageBox box(this, CMessageBox::Error, tr("00010002"), strText);
+		box.exec();
+	}
+	return bRet;
 }
 
 
@@ -113,6 +123,7 @@ void QTUninstallPage::SetLanguage(int iLangType)
 		SetLanguage(QTextCodec::codecForLocale()->toUnicode(STR_LANG_TW));
 		break;
 	default:
+		ui.welcome_lbl_app_subname->setVisible(false);
 		SetLanguage(QTextCodec::codecForLocale()->toUnicode(STR_LANG_EN));
 		break;
 	}
@@ -124,13 +135,17 @@ void QTUninstallPage::SetCurrentPage(int iIndex)
 	switch (iIndex)
 	{
 	case 0:
+		setStyleSheet(m_style3);
 		ui.btnClose->setEnabled(true);
 		ui.welcome_btn_cancel->setFocus();
 		break;
 	case 1:
+		setStyleSheet(m_style2);
 		ui.deletefiles_btn_next->setFocus();
 		break;
 	case 2:
+		setStyleSheet(m_style3);
+		ui.btnClose->setEnabled(true);
 		ui.finish_btn_finish->setFocus();
 		m_deleteFilesFinished = true;
 		break;
@@ -142,7 +157,7 @@ void QTUninstallPage::SetCurrentPage(int iIndex)
 
 void QTUninstallPage::SetLanguage(QString strLang)
 {
-
+	ui.welcome_lbl_app_subname->show();
 	if (strLang == QTextCodec::codecForLocale()->toUnicode(STR_LANG_CN))
 	{
 		strLang = QLatin1String(":/translations/zh_CN.qm");
@@ -153,6 +168,7 @@ void QTUninstallPage::SetLanguage(QString strLang)
 	}
 	else
 	{
+		ui.welcome_lbl_app_subname->hide();
 		strLang = QLatin1String(":/translations/en_US");
 	}
 	if (!strLang.isEmpty())
@@ -270,9 +286,15 @@ void QTUninstallPage::TranslateText()
 
 	/**********************************Welcome Page****************************************/
 
-	ui.welcome_lbl_title->setText(tr("00020200").arg(m_strAppNameVersion));
+	ui.welcome_lbl_ask->setText(tr("00020200").arg(m_strAppNameVersion));
 	ui.welcome_btn_uninstall->setText(tr("00020201"));
 	ui.welcome_btn_cancel->setText(tr("00020202"));
+	ui.welcome_lbl_appname->setText(tr("00020203").arg(tstringToQString(ContextManager::getInstance()->getAppName())));
+	QString str = tstringToQString(ContextManager::getInstance()->getAppAliasName());
+	if (str.isEmpty())
+		ui.welcome_lbl_app_subname->setVisible(false);
+	else
+		ui.welcome_lbl_app_subname->setText(tr("00020204").arg(str));
 #if QT_CONFIG(shortcut)
 	ui.welcome_btn_uninstall->setShortcut(QString("U"));
 	ui.welcome_btn_cancel->setShortcut(QString("C"));

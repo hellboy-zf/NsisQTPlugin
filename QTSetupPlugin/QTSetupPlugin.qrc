@@ -1,19 +1,24 @@
 <RCC>
     <qresource prefix="/">
+		<file>Resource/css/main.css</file>
         <file>Resource/image/logo.ico</file>
-        <file>Resource/image/btn_normal.png</file>
-        <file>Resource/image/btn_pressed.png</file>
-        <file>Resource/image/btn_grey.png</file>
+		<file>Resource/image/back1.png</file>
+		<file>Resource/image/back2.png</file>
+		<file>Resource/image/back3.png</file>
+		<file>Resource/image/img_succeed.png</file>
         <file>Resource/image/sysBtnMin_normal.png</file>
         <file>Resource/image/sysBtnMin_hover.png</file>
         <file>Resource/image/sysBtnMin_pressed.png</file>
         <file>Resource/image/sysBtnClose_normal.png</file>
         <file>Resource/image/sysBtnClose_hover.png</file>
         <file>Resource/image/sysBtnClose_pressed.png</file>
+		<file>Resource/image/sysBtnClose_disable.png</file>
         <file>Resource/image/btn_down.png</file>
         <file>Resource/image/btn_down_hover.png</file>
+		<file>Resource/image/radio_check.png</file>
+		<file>Resource/image/radio_check_hover.png</file>
         <file>Resource/image/radio_uncheck.png</file>
-        <file>Resource/image/radio_check.png</file>
+        <file>Resource/image/radio_uncheck_hover.png</file>
         <file>Resource/image/radio_disabled.png</file>		
 		<file>Resource/icon/ico_wnd.png</file>
         <file>Resource/icon/ico_remind.png</file>

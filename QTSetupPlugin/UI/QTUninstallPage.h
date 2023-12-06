@@ -49,4 +49,7 @@ private:
 	QTranslator* m_qTranslator;
 	QString m_strAppNameVersion;
 	QString m_strDelete;
+	QString m_style1;
+	QString m_style2;
+	QString m_style3;
 };

@@ -9,6 +9,7 @@
 //	QTInstallPage w;
 //	//QTUninstallPage w;
 //	auto iLangType = GetUserDefaultUILanguage();
+//	iLangType = 0x0404;
 //	w.SetLanguage(iLangType);
 //	w.show();
 //	return a.exec();

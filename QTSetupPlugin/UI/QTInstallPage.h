@@ -10,9 +10,6 @@
 
 
 
-
-
-
 class QTInstallPage : public FramelessMainWindow
 {
     Q_OBJECT
@@ -22,20 +19,16 @@ public:
     ~QTInstallPage();
 
 	bool CheckMutexProgramRunning();
-	void SetLanguage(int iLangType);
+	void SetLanguage(int iLangType, bool showBtnLang = true);
 	int GetLanguageType();
 
 	std::wstring GetInstallDirectory();
 	void SetInstallStepDescription(const std::wstring& description, int progressValue = -1);
 	void NsisExtractFilesFinished();
 
-	bool IsRunExe1();
-	bool IsCreateDesktopShortcutExe1();
-	bool IsBootExe1();
-
-	bool IsRunExe2();
-	bool IsCreateDesktopShortcutExe2();
-	bool IsBootExe2();
+	bool IsRunExe();
+	bool IsCreateDesktopShortcutExe();
+	bool IsBootExe();
 
 
 protected:
@@ -67,10 +60,16 @@ private:
 	concurrency::critical_section m_listItemLock;
 	bool m_extractFilesFinished;
 
+	QString m_style1;
+	QString m_style2;
+	QString m_style3;
+
 	QTranslator* m_qTranslator;
 	QString m_strAppNameVersion;
 	QString m_strExtract;
 	int m_iLangType;
+	std::vector<concurrency::task<void>> m_tasks;
 
 	double m_driverFreeGb;
+	bool m_isRunExe;
 };

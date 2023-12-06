@@ -21,6 +21,7 @@ CMessageBox::CMessageBox(QWidget* parent,
     , m_lblTitle(new QLabel(this))
     , m_lblIconMain(new QLabel(this))
     , m_lblText(new QLabel(this))
+    , m_btnSysClose(new QPushButton(this))
     , m_layout(new QVBoxLayout())
     , m_pButtonBox(new QDialogButtonBox(this))
     , m_mouserPressed(false)
@@ -30,15 +31,16 @@ CMessageBox::CMessageBox(QWidget* parent,
 
     m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->setSpacing(0);
-
     //Title
     QWidget* titleWidget = new QWidget();
-    QHBoxLayout* titleLayout = new QHBoxLayout();
-    titleLayout->setContentsMargins(8, 0, 0, 0);
-    titleLayout->setSpacing(20);
-    titleWidget->setLayout(titleLayout);
-    titleWidget->setStyleSheet("background-color: qlineargradient(x1:0,y1:0,x2:1,y2:1,stop:0 #343434, stop:1 #1e1e1e);");
+    titleWidget->setObjectName("msgBox_widget");
+    titleWidget->setFixedHeight(26);
 
+    QHBoxLayout* titleLayout = new QHBoxLayout();
+    titleLayout->setContentsMargins(8, 0, 8, 0);
+    titleLayout->setSpacing(10);
+    titleWidget->setLayout(titleLayout);
+    //titleWidget->setStyleSheet("background-color: qlineargradient(x1:0,y1:0,x2:0,y2:1,stop:0 #343434, stop:1 #1e1e1e);");
 	QPixmap pixmap(":/Resource/icon/ico_wnd.png");
 	m_lblIconTitle->setPixmap(pixmap);
 	m_lblIconTitle->setFixedSize(12, 12);
@@ -46,17 +48,29 @@ CMessageBox::CMessageBox(QWidget* parent,
     m_lblIconTitle->setAlignment(Qt::AlignVCenter);
     titleLayout->addWidget(m_lblIconTitle);
 
-    m_lblTitle->setFixedHeight(26);
     titleLayout->addWidget(m_lblTitle);
-
     titleLayout->addStretch(1);
 
+    m_btnSysClose->setFixedSize(18, 18);
+	m_btnSysClose->setStyleSheet("QPushButton{\
+	                                   border:none;\
+	                                   background:transparent;\
+	                                   border-image: url(:/Resource/image/sysBtnClose_normal.png);\
+                                  }\
+                                  QPushButton:focus{border-image: url(:/Resource/image/sysBtnClose_hover.png);}\
+                                  QPushButton:hover{border-image: url(:/Resource/image/sysBtnClose_hover.png);}\
+                                  QPushButton:pressed{border-image: url(:/Resource/image/sysBtnClose_pressed.png);}");
+    titleLayout->addWidget(m_btnSysClose);
     m_layout->addWidget(titleWidget);
 
     QGroupBox* groupBox = new QGroupBox(this);
-    groupBox->setContentsMargins(10, 10, 10, 10);
+    groupBox->setObjectName("msgBox_box");
     groupBox->setFixedHeight(140);
-    groupBox->setStyleSheet("QGroupBox{background-color: rgb(52, 52, 52);margin-top: 0ex;border-color: rgb(29, 29, 29);}");
+    //groupBox->setStyleSheet("QGroupBox { \
+    //                            background-color: #343434; \
+    //                            border:1px solid #1b1b1b; \
+    //                            margin-top: 0ex; \
+    //                        }");
     m_layout->addWidget(groupBox);
 
     //Context + Buttons
@@ -104,11 +118,15 @@ CMessageBox::CMessageBox(QWidget* parent,
             else {
                 pushButton->setText(tr("00050002"));
             }
+            if (i == 0)
+                pushButton->setFocus();
         }
     }
 
+    m_lblTitle->setObjectName("msgBox_lblTitle");
     m_lblTitle->setText(title);
     m_lblTitle->setStyleSheet("font-family:Microsoft YaHei;font-size:14px;");
+    m_lblText->setObjectName("msgbox_lblText");
     m_lblText->setText(text);
     m_lblText->setStyleSheet("font-family:Microsoft YaHei;font-size:12px;");
 
@@ -130,7 +148,9 @@ CMessageBox::CMessageBox(QWidget* parent,
     connect(m_pButtonBox, SIGNAL(clicked(QAbstractButton*)), this,
         SLOT(onButtonClicked(QAbstractButton*)));
 
-
+    connect(m_btnSysClose, &QPushButton::clicked, [this]() {
+        done(QMessageBox::StandardButton::NoButton);
+        });
 #ifdef _WIN32
 	::SetWindowPos(HWND(this->winId()), HWND_TOP, 0, 0, 0, 0,
 		SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);

@@ -34,7 +34,7 @@ QTPLUGINHELPER_API void BindEventToNsisFunc(HWND hwndParent, int string_size, TC
 QTPLUGINHELPER_API void NewThreadRun(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
 
-QTPLUGINHELPER_API void CheckMutexProgramRunning(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
+//QTPLUGINHELPER_API void CheckMutexProgramRunning(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
 /**
 * @brief Nsis calls the dll function for the last time, and releases the dll without adding /NOUNLOAD
@@ -60,22 +60,13 @@ QTPLUGINHELPER_API void NsisExtractFilesFinished(HWND hwndParent, int string_siz
 QTPLUGINHELPER_API void GetInstallDirectory(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
 
-QTPLUGINHELPER_API void IsRunExe1(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
+QTPLUGINHELPER_API void IsRunExe(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
 
-QTPLUGINHELPER_API void IsCreateDesktopShortcutExe1(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
+QTPLUGINHELPER_API void IsCreateDesktopShortcutExe(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
 
-QTPLUGINHELPER_API void IsBootExe1(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
-
-
-QTPLUGINHELPER_API void IsRunExe2(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
-
-
-QTPLUGINHELPER_API void IsCreateDesktopShortcutExe2(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
-
-
-QTPLUGINHELPER_API void IsBootExe2(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
+QTPLUGINHELPER_API void IsBootExe(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
 
 QTPLUGINHELPER_API void GetLanguageType(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);

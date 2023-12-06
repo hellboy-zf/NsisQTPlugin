@@ -30,12 +30,18 @@ public:
 	void setAppName(const TCHAR* name);
 	std::wstring getAppName();
 
+	void setAppAliasName(const TCHAR* aliasName);
+	std::wstring getAppAliasName();
+
 	void setAppVersion(const TCHAR* verstion);
 	std::wstring getAppVersion();
 	std::wstring getAppNameVersion();
 
 	void setRequireSize(int32_t size);
 	int32_t getRequireSize();
+
+	void setExeName(const TCHAR* name);
+	std::wstring getExeName();
 
     void setPluginHandle(HMODULE handle);
     HMODULE getPluginHandle();
@@ -58,8 +64,12 @@ public:
 	//void BindButtonClickedEvent(const std::wstring& buttonName, long nsisFuncAddress);
 	
 	//bool ExecuteButtonClickedEventFunction(const std::wstring& buttonName);
-
-	int CheckMutexProgramRunning();
+	
+	/// <summary>
+	/// 判断程序是否在运行
+	/// </summary>
+	/// <returns>true-进程id false-0</returns>
+	DWORD IsAppRunning(const std::wstring& appName);
 
 private:
 
@@ -77,7 +87,10 @@ private:
 
 
 	std::wstring m_strAppName;
+	std::wstring m_strAliasName;
 	std::wstring m_strAppVersion;
+
+	std::wstring m_strExeName;
 
 	int32_t m_iRequreSize;	//安装目录文件夹 用于获取安装时所需磁盘空间大小
 	QTInstallPage* m_installPagePtr;

@@ -107,7 +107,7 @@ def do_main(nsis_script_template_path):
     generate_nsis_script_uninstall(g_root_dir)
     g_insert_nsis_script_uninstall_list.append('    ${UI_PLUGIN_NAME}::UnSetUnInstallStepDescription "Completed" 100')
 
-    f = open(nsis_script_template_path, "r")
+    f = open(nsis_script_template_path, 'r', encoding='utf-8')
     all_nsis_script_lines = []
     cur_line_index = -1
     insert_install_line_index = -1
@@ -139,7 +139,7 @@ def do_main(nsis_script_template_path):
         insert_uninstall_line_index += 1
 
     #Insert REQUIRED_SPACE Macro
-    all_nsis_script_lines.insert(22, '!define REQUIRED_SPACE        {0}\n'.format(g_root_dir_size))
+    all_nsis_script_lines.insert(24, '!define REQUIRED_SPACE        {0}\n'.format(g_root_dir_size))
     print('required space: {0:.2f}'.format(g_root_dir_size / 1024 / 1024))
     nsis_script_path = nsis_script_template_path[:len(nsis_script_template_path) - len('_template.nsi')]
     nsis_script_path += '.nsi'
