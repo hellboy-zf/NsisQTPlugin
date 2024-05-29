@@ -71,6 +71,9 @@ QTPLUGINHELPER_API void IsBootExe(HWND hwndParent, int string_size, TCHAR* varia
 
 QTPLUGINHELPER_API void GetLanguageType(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
+
+QTPLUGINHELPER_API void DeleteDirectory(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
+
 /*******************************************************************INSTALL**************************************************************************/
 
 
@@ -85,5 +88,7 @@ QTPLUGINHELPER_API void UnSetUnInstallStepDescription(HWND hwndParent, int strin
 
 QTPLUGINHELPER_API void UnNsisDeleteFilesFinished(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
+
+QTPLUGINHELPER_API void UnDeleteDirectory(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra);
 
 #endif	//__QTSETUPPLUGIN_QTSETUPPLUGINHELPER_H__

@@ -86,7 +86,7 @@ Function .onInit
 
 	InitPluginsDir
 
-	SetOutPath "$PLUGINSDIR"
+	SetOutPath $PLUGINSDIR
 	
 	File /r ${PACKAGE_PATH}\*.*
 	
@@ -97,21 +97,21 @@ FunctionEnd
 Function .onInstSuccess
 
 	${UI_PLUGIN_NAME}::FinalCall
-	RMDir /r /REBOOTOK "$PLUGINSDIR"
+	RMDir /r /REBOOTOK $PLUGINSDIR
 	
 FunctionEnd
 
 Function .onInstFailed
 
 	${UI_PLUGIN_NAME}::FinalCall
-	RMDir /r /REBOOTOK "$PLUGINSDIR"
+	RMDir /r /REBOOTOK $PLUGINSDIR
 	
 FunctionEnd
 
 Function .onUserAbort
 
 	${UI_PLUGIN_NAME}::FinalCall
-	RMDir /r /REBOOTOK "$PLUGINSDIR"
+	RMDir /r /REBOOTOK $PLUGINSDIR
 	
 FunctionEnd
 
@@ -136,11 +136,11 @@ Function PageAppInstall
 	;Initialize the name version and the path where the app is located
 	${UI_PLUGIN_NAME}::InitSetupPluginHelper /NOUNLOAD ${PRODUCT_NAME} ${PRODUCT_VERSION} ${REQUIRED_SPACE} ${PRODUCT_EXE_NAME}	
 	
-	# ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "${REG_STR_LANGUAGE}"
+	ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "${REG_STR_LANGUAGE}"
 	
 	;Display the page, need to pass the $PLUGINSDIR parameter to the qt app path
-	# ${UI_PLUGIN_NAME}::ShowInstallWindow /NOUNLOAD $PLUGINSDIR $0
-	${UI_PLUGIN_NAME}::ShowInstallWindow /NOUNLOAD $PLUGINSDIR "-1"
+	${UI_PLUGIN_NAME}::ShowInstallWindow /NOUNLOAD $PLUGINSDIR $0
+	;${UI_PLUGIN_NAME}::ShowInstallWindow /NOUNLOAD $PLUGINSDIR "-1"
 
 FunctionEnd
 
@@ -173,6 +173,11 @@ FunctionEnd
 Function onExtractFiles
 	
 	Call onUnstallExistProduct
+	
+	CreateDirectory $INSTDIR
+	
+	# onExtractFiles NsisScriptGenerate.py
+	
 	
 	Call OnAfterExtractFiles
 
@@ -266,10 +271,11 @@ Function onUnstallExistProduct
 	Sleep 200
 	
 	# Delete directory
-	${UI_PLUGIN_NAME}::SetInstallStepDescription "UNSTALL_OLD_PRODUCT" 101
-	RMDir /r $0
+	${UI_PLUGIN_NAME}::SetInstallStepDescription /NOUNLOAD "UNSTALL_OLD_PRODUCT" 101
+	;RMDir /r $0
+	${UI_PLUGIN_NAME}::DeleteDirectory /NOUNLOAD $0
 
-	${UI_PLUGIN_NAME}::SetInstallStepDescription "UNSTALL_OLD_PRODUCT" 102
+	${UI_PLUGIN_NAME}::SetInstallStepDescription /NOUNLOAD "UNSTALL_OLD_PRODUCT" 102
 	# Delete StartMenu ShortCut
 	Delete "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk"
 	Delete "$SMPROGRAMS\${PRODUCT_NAME}\Website.lnk"
@@ -280,7 +286,7 @@ Function onUnstallExistProduct
 	# Delete DeskTop ShortCut
 	Delete "$DESKTOP\${PRODUCT_NAME}.lnk"
 	
-	${UI_PLUGIN_NAME}::SetInstallStepDescription "UNSTALL_OLD_PRODUCT" 103
+	${UI_PLUGIN_NAME}::SetInstallStepDescription /NOUNLOAD "UNSTALL_OLD_PRODUCT" 103
 	# Delete Regedit Uninstall Info
 	DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
 	DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}"
@@ -311,11 +317,11 @@ Function un.PageAppUnInstall
 	;Initialize the name version and the path where the app is located
 	${UI_PLUGIN_NAME}::UnInitUninstallPluginHelper /NOUNLOAD ${PRODUCT_NAME} ${PRODUCT_VERSION} ${PRODUCT_EXE_NAME} ${PRODUCT_ALIAS_NAME}
 	
-	# ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Language"
+	ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Language"
 	
 	;Display the page, need to pass the $PLUGINSDIR parameter to the qt app path
-	# ${UI_PLUGIN_NAME}::UnShowUninstallWindow /NOUNLOAD $PLUGINSDIR $0
-	${UI_PLUGIN_NAME}::UnShowUninstallWindow /NOUNLOAD $PLUGINSDIR "-1"
+	${UI_PLUGIN_NAME}::UnShowUninstallWindow /NOUNLOAD $PLUGINSDIR $0
+	;${UI_PLUGIN_NAME}::UnShowUninstallWindow /NOUNLOAD $PLUGINSDIR "-1"
 	
 FunctionEnd
 
@@ -330,7 +336,7 @@ Function un.onInit
 	
 	InitPluginsDir
 
-	SetOutPath "$PLUGINSDIR"
+	SetOutPath $PLUGINSDIR
 	
 	File /r ${PACKAGE_PATH}\*.*
 	
@@ -342,30 +348,30 @@ FunctionEnd
 Function un.onUninstSuccess
 
 	${UI_PLUGIN_NAME}::FinalCall
-	RMDir /r /REBOOTOK "$PLUGINSDIR"
+	RMDir /r /REBOOTOK $PLUGINSDIR
 	
 FunctionEnd
 
 Function un.onUninstFailed
 
 	${UI_PLUGIN_NAME}::FinalCall
-	RMDir /r /REBOOTOK "$PLUGINSDIR"
+	RMDir /r /REBOOTOK $PLUGINSDIR
 	
 FunctionEnd
 
 Function un.onUserAbort
 
 	${UI_PLUGIN_NAME}::FinalCall
-	RMDir /r /REBOOTOK "$PLUGINSDIR"
+	RMDir /r /REBOOTOK $PLUGINSDIR
 	
 FunctionEnd
 
 Function un.OnStartDeleteFiles
 
 	# Copy license files to templete directory
-	CreateDirectory "${LICENSE_FILE_TEMP_DIR}"
+	# CreateDirectory ${LICENSE_FILE_TEMP_DIR}
 	# CopyFiles /SILENT "$INSTDIR\${CONFIG_FILE_NAME}" "${LICENSE_FILE_TEMP_DIR}\${CONFIG_FILE_NAME}"
-	Sleep 200
+	# Sleep 200
 	
 	GetFunctionAddress $0 un.onDeleteFiles
     ${UI_PLUGIN_NAME}::NewThreadRun /NOUNLOAD $0
@@ -374,10 +380,12 @@ FunctionEnd
 
 Function un.onDeleteFiles
 	
+	# un.onDeleteFiles NsisScriptGenerate.py
+	Delete "$INSTDIR\${PRODUCT_NAME}.url"
 	Delete "$INSTDIR\${PRODUCT_NAME}.url"
 	Delete "$INSTDIR\${PRODUCT_UNINSTALL_EXE}"
-	RMDir /r "$INSTDIR"
-	
+	;RMDir /r "$INSTDIR"
+	${UI_PLUGIN_NAME}::UnDeleteDirectory /NOUNLOAD $INSTDIR
 	Call un.OnAfterExtractFiles
 	
 FunctionEnd

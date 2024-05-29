@@ -42,7 +42,7 @@ def generate_nsis_script_install(dir):
             sub_path = full_path[len(g_root_dir):]
             cur_num += 1
             g_insert_nsis_script_install_list.append('    CreateDirectory "$INSTDIR{0}"\n'.format(sub_path))
-            g_insert_nsis_script_install_list.append('    {0}::SetInstallStepDescription "{1}" {2:.2f}\n'
+            g_insert_nsis_script_install_list.append('    {0}::SetInstallStepDescription /NOUNLOAD "{1}" {2:.2f}\n'
                                              .format('${UI_PLUGIN_NAME}', sub_path[1:],
                                                      cur_num * 100 / (
                                                                  g_extract_file_cmd_total + g_create_dir_cmd_total)))
@@ -55,7 +55,7 @@ def generate_nsis_script_install(dir):
             cur_num += 1
             g_insert_nsis_script_install_list.append('    SetOutPath "$INSTDIR{0}"\n'.format(sub_dir))
             g_insert_nsis_script_install_list.append('    File "{0}"\n'.format(full_path))
-            g_insert_nsis_script_install_list.append('    {0}::SetInstallStepDescription "{1}" {2:.2f}\n'
+            g_insert_nsis_script_install_list.append('    {0}::SetInstallStepDescription /NOUNLOAD "{1}" {2:.2f}\n'
                                              .format('${UI_PLUGIN_NAME}', sub_path[1:],
                                                      cur_num * 100 / (g_extract_file_cmd_total + g_create_dir_cmd_total)))
 
@@ -77,7 +77,7 @@ def generate_nsis_script_uninstall(dir):
             sub_path = full_path[len(g_root_dir):]
             cur_num += 1
             g_insert_nsis_script_uninstall_list.insert(0, '    Delete "$INSTDIR{0}"\n'.format(sub_path))
-            g_insert_nsis_script_uninstall_list.insert(1, '    {0}::UnSetUnInstallStepDescription "{1}" {2:.2f}\n'
+            g_insert_nsis_script_uninstall_list.insert(1, '    {0}::UnSetUnInstallStepDescription /NOUNLOAD "{1}" {2:.2f}\n'
                                              .format('${UI_PLUGIN_NAME}', sub_path[1:],
                                                      100 - (cur_num - 1) * 100 / (g_extract_file_cmd_total + g_create_dir_cmd_total)))
         # 遍历所有的文件夹
@@ -86,7 +86,7 @@ def generate_nsis_script_uninstall(dir):
             sub_path = full_path[len(g_root_dir):]
             cur_num += 1
             g_insert_nsis_script_uninstall_list.insert(0, '    RMDir "$INSTDIR{0}"\n'.format(sub_path))
-            g_insert_nsis_script_uninstall_list.insert(1, '    {0}::UnSetUnInstallStepDescription "{1}" {2:.2f}\n'
+            g_insert_nsis_script_uninstall_list.insert(1, '    {0}::UnSetUnInstallStepDescription /NOUNLOAD "{1}" {2:.2f}\n'
                                              .format('${UI_PLUGIN_NAME}', sub_path[1:],
                                                      100 - (cur_num - 1) * 100 / (
                                                                  g_extract_file_cmd_total + g_create_dir_cmd_total)))
@@ -102,10 +102,10 @@ def do_main(nsis_script_template_path):
     print("file total: " + str(g_extract_file_cmd_total) + ", dir total: " + str(g_create_dir_cmd_total))
 
     generate_nsis_script_install(g_root_dir)
-    g_insert_nsis_script_install_list.append('    ${UI_PLUGIN_NAME}::SetInstallStepDescription "Completed" 100')
+    g_insert_nsis_script_install_list.append('    ${UI_PLUGIN_NAME}::SetInstallStepDescription /NOUNLOAD "Completed" 100')
 
     generate_nsis_script_uninstall(g_root_dir)
-    g_insert_nsis_script_uninstall_list.append('    ${UI_PLUGIN_NAME}::UnSetUnInstallStepDescription "Completed" 100')
+    g_insert_nsis_script_uninstall_list.append('    ${UI_PLUGIN_NAME}::UnSetUnInstallStepDescription /NOUNLOAD "Completed" 100')
 
     f = open(nsis_script_template_path, 'r', encoding='utf-8')
     all_nsis_script_lines = []
@@ -115,9 +115,9 @@ def do_main(nsis_script_template_path):
     for s in f.readlines():
         all_nsis_script_lines.append(s)
         cur_line_index += 1
-        if s.find('Call onUnstallExistProduct') != -1:
+        if s.find('# onExtractFiles NsisScriptGenerate.py') != -1:
             insert_install_line_index = cur_line_index + 1
-        if s.find('Function un.onDeleteFiles') != -1:
+        if s.find('# un.onDeleteFiles NsisScriptGenerate.py') != -1:
             insert_uninstall_line_index = cur_line_index + 1
     f.close()
 

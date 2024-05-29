@@ -148,14 +148,6 @@
 	font-family: &quot;Microsoft YaHei&quot;;
 	font-size:12px;
 }
-QPushButton:focus
-{
-	color:#ff7e00;
-}
-QPushButton:hover
-{
-	color:#ff7e00;
-}
 QPushButton:menu-indicator
 {
 	image:url(:/Resource/image/btn_down.png);

@@ -3,6 +3,57 @@
 #include <sstream>
 #pragma comment(lib,"User32.lib")
 
+bool DeleteDirectory(const std::wstring& refcstrRootDirectory, bool bDeleteSubdirectories = true)
+{
+	bool            bResult(true);
+
+	HANDLE          hFile(INVALID_HANDLE_VALUE);                       // Handle to directory
+	std::wstring    strFilePath;                 // Filepath
+	std::wstring    strPattern;                  // Pattern
+	WIN32_FIND_DATA fileInformation;             // File information
+
+	strPattern = refcstrRootDirectory + _T("\\*.*");
+	hFile = ::FindFirstFile(strPattern.c_str(), &fileInformation);
+	if (hFile == INVALID_HANDLE_VALUE)
+		return bResult;
+
+	do {
+		if (_tcscmp(fileInformation.cFileName, _T(".")) != 0 && _tcscmp(fileInformation.cFileName, _T("..")) != 0) {
+			strFilePath.erase();
+			strFilePath = refcstrRootDirectory + _T("\\") + fileInformation.cFileName;
+
+			if (fileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+				if (bDeleteSubdirectories) {
+					// Delete subdirectory
+					if (!DeleteDirectory(strFilePath, bDeleteSubdirectories))
+						bResult = false;
+				}
+			}
+			else {
+				// Set file attributes
+				::SetFileAttributes(strFilePath.c_str(), FILE_ATTRIBUTE_NORMAL);
+				// Delete file
+				if (!::DeleteFile(strFilePath.c_str())) {
+					bResult = false;
+				}
+			}
+		}
+	} while (::FindNextFile(hFile, &fileInformation) == TRUE);
+
+	// Close handle
+	::FindClose(hFile);
+
+	// Set directory attributes
+	::SetFileAttributes(refcstrRootDirectory.c_str(), FILE_ATTRIBUTE_NORMAL);
+
+	// Delete directory
+	if (!::RemoveDirectory(refcstrRootDirectory.c_str())) {
+		bResult = false;
+	}
+
+	return bResult;
+
+}
 
 #define NSMETHOD_INIT() do {\
         ContextManager::getInstance()->setExtraParameters(extra); \
@@ -171,6 +222,16 @@ void GetLanguageType(HWND hwndParent, int string_size, TCHAR* variables, stack_t
 	pushstring(str);
 }
 
+void DeleteDirectory(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
+{
+	NSMETHOD_INIT()
+
+	TCHAR szDirection[MAX_PATH] = { 0 };
+	popstring(szDirection);
+
+	DeleteDirectory(szDirection);
+}
+
 
 void UnInitUninstallPluginHelper(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
 {
@@ -237,4 +298,14 @@ void UnNsisDeleteFilesFinished(HWND hwndParent, int string_size, TCHAR* variable
 		if (ContextManager::getInstance()->getUninstallPagePtr()) {
 			ContextManager::getInstance()->getUninstallPagePtr()->NsisDeleteFilesFinished();
 		}
+}
+
+void UnDeleteDirectory(HWND hwndParent, int string_size, TCHAR* variables, stack_t** stacktop, extra_parameters* extra)
+{
+	NSMETHOD_INIT()
+
+	TCHAR szDirection[MAX_PATH] = { 0 };
+	popstring(szDirection);
+
+	DeleteDirectory(szDirection);
 }

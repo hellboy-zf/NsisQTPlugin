@@ -566,12 +566,12 @@ void QTInstallPage::InstallStart()
 		box.exec();
 		return;
 	}
-	QDir dir(strDir);
-	if (!dir.exists()) {
-		if (!dir.mkdir(strDir)) {
-			return;
-		}
-	}
+	//QDir dir(strDir);
+	//if (!dir.exists()) {
+	//	if (!dir.mkdir(strDir)) {
+	//		return;
+	//	}
+	//}
 
 	SetCurrentPage(3);
 

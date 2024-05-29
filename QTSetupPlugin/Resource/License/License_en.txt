@@ -1,8 +1,8 @@
 ﻿Important hint:
 
-Please read carefully: This "End User License Agreement" (hereinafter referred to as the "Agreement") is a legal agreement between you (single entity) and App1 System (hereinafter referred to as "Report System") regarding the above Report Systems software products.
+Please read carefully: This "End User License Agreement" (hereinafter referred to as the "Agreement") is a legal agreement between you (single entity) and App1 System (hereinafter referred to as "App1 System") regarding the above App1 Systems software products.
 
-This "Software Product" includes computer software and may include associated media, printed materials, and "online" or electronic documentation ("Software Product"). This "Software Product" also includes any updates and supplements to the original "Software Product" made available to you by Report Systems. Any software product provided to you with this Software Product and associated with a separate end user license is licensed to you under the terms of that license agreement. Once you install, copy, download, access or otherwise use the "Software Product", you agree to be bound by the terms of this Agreement. If you do not agree with the terms of this Agreement, please do not install or use the Software Product, but you may return it to the place of original purchase for a full refund.
+This "Software Product" includes computer software and may include associated media, printed materials, and "online" or electronic documentation ("Software Product"). This "Software Product" also includes any updates and supplements to the original "Software Product" made available to you by App1 Systems. Any software product provided to you with this Software Product and associated with a separate end user license is licensed to you under the terms of that license agreement. Once you install, copy, download, access or otherwise use the "Software Product", you agree to be bound by the terms of this Agreement. If you do not agree with the terms of this Agreement, please do not install or use the Software Product, but you may return it to the place of original purchase for a full refund.
 
 Software Product License:
 
@@ -22,7 +22,7 @@ This Software Product is protected by copyright laws and international copyright
 
 . Separation of components. This Software Product is licensed as a single product. You may not use its components on multiple computers.
 
-. Trademark. This Agreement does not grant you any rights with respect to any Report system trademarks or service marks.
+. Trademark. This Agreement does not grant you any rights with respect to any App1 system trademarks or service marks.
 
 . Rent. This Software Product may not be rented, leased or loaned.
 
@@ -38,7 +38,7 @@ This Software Product is protected by copyright laws and international copyright
 
 6. Make a backup copy. After installing a copy of the Software Product in accordance with this Agreement, you may retain the original media used by Absen to provide the Software Product to you for backup or archival purposes only. If the original media is required to use the Software Product on a computer, you may make a copy of the Software Product for backup or archival purposes only. Except as expressly provided in this Agreement, you may not reproduce this Software Product or the printed materials accompanying this Software Product.
 
-If you acquired this Report System product in the People's Republic of China, the following limited warranty applies to you:
+If you acquired this App1 System product in the People's Republic of China, the following limited warranty applies to you:
 
 To the fullest extent permitted by applicable law, in no event shall Absen be liable for any special, incidental, non-direct incident arising from the use or inability to use the Software Product, or the provision or non-provision of support services. or consequential damages (including, but not limited to, lost business profits, business interruption, loss of business information, or any other monetary loss), even if Absen has been advised of the possibility of such damages. In any case, all responsibilities of Absen under any terms of this Agreement shall be subject to the actual price paid by you for the "Software Product". However, if you have entered into a Support Services agreement with Absen, Absen's entire liability for Support Services shall be governed by the terms of that agreement.
 
